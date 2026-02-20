@@ -3,11 +3,12 @@ import { Unity, useUnityContext } from "react-unity-webgl"
 import { useEffect } from "react"
 
 export default function UnityPlayer() {
+  const R2_BASE = 'https://assets.tsukie.com/endless-defense/Build';
   const { unityProvider } = useUnityContext({
-    loaderUrl: '../endless-defense/Build/endless-defense.loader.js',
-    dataUrl: '../endless-defense/Build/endless-defense.data.unityweb',
-    frameworkUrl: '../endless-defense/Build/endless-defense.framework.js.unityweb',
-    codeUrl: '../endless-defense/Build/endless-defense.wasm.unityweb',
+    loaderUrl: `${R2_BASE}/endless-defense.loader.js`,
+    dataUrl: `${R2_BASE}/endless-defense.data.unityweb`,
+    frameworkUrl: `${R2_BASE}/endless-defense.framework.js.unityweb`,
+    codeUrl: `${R2_BASE}/endless-defense.wasm.unityweb`,
   })
   useEffect(() => {
     const canvas = document.querySelector('canvas')
