@@ -36,5 +36,7 @@ module.exports = {
   plugins: [
     // eslint-disable-next-line global-require
     require('@tailwindcss/forms'),
+    // eslint-disable-next-line global-require
+    require('./src/styles/additional-styles/typography-plugin'),
   ],
 };

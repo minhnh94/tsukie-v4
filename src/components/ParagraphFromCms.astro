@@ -4,6 +4,9 @@ import { renderMarkdown } from '@/lib/markdownRenderer.js';
 const { content } = Astro.props;
 const html = await renderMarkdown(content);
 ---
-<div class="text-slate-500 dark:text-slate-400 space-y-8 my-4">
-  <div class="react_markdown" set:html={html} />
+<div class="my-4">
+  <div
+    class="prose prose-slate max-w-none dark:prose-invert prose-headings:font-aspekta prose-headings:text-slate-800 dark:prose-headings:text-slate-100 prose-a:font-medium prose-a:text-sky-500 prose-a:no-underline hover:prose-a:underline prose-strong:font-medium prose-strong:text-slate-800 dark:prose-strong:text-slate-100 prose-blockquote:border-l-2 prose-blockquote:border-teal-500 dark:prose-blockquote:border-gray-400 prose-blockquote:italic prose-blockquote:text-inherit prose-img:w-full prose-figcaption:text-center prose-figcaption:text-gray-400 prose-figcaption:italic prose-pre:overflow-x-auto prose-pre:rounded prose-pre:bg-slate-800 prose-pre:p-4 prose-pre:text-sm prose-pre:leading-tight prose-pre:text-slate-500 prose-code:font-pt-mono prose-code:text-sky-300 prose-code:before:content-none prose-code:after:content-none prose-li:my-1"
+    set:html={html}
+  />
 </div>
