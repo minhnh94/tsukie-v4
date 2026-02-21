@@ -1,0 +1,7 @@
+{
+  "name": "tsukie-v4",
+  "compatibility_date": "2026-02-20",
+  "assets": {
+    "directory": "./dist"
+  }
+}
