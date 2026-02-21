@@ -1,5 +1,6 @@
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
+import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import rehypeRaw from 'rehype-raw';
 import rehypeFigure from 'rehype-figure';
@@ -9,6 +10,7 @@ import { rehypeExternalLinks } from './rehypeExternalLinks.js';
 
 const processor = unified()
   .use(remarkParse)
+  .use(remarkGfm)
   .use(remarkRehype, { allowDangerousHtml: true })
   .use(rehypeRaw)
   .use(rehypeFigure)
@@ -18,5 +20,7 @@ const processor = unified()
 
 export async function renderMarkdown(markdown) {
   const result = await processor.process(markdown);
-  return String(result);
+  // notion-to-md outputs "undefined" for unsupported block types,
+  // which renders as a standalone <p>undefined</p>. Remove only those.
+  return String(result).replace(/<p>undefined<\/p>/g, '');
 }
