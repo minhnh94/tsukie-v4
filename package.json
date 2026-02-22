@@ -12,6 +12,7 @@
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/tailwind": "^6.0.2",
+    "@heroicons/react": "^2.2.0",
     "@notionhq/client": "^2.2.3",
     "@sentry/astro": "^10.39.0",
     "@spotlightjs/astro": "^3.2.6",

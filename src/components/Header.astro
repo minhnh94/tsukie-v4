@@ -1,17 +1,28 @@
 ---
+import { HomeIcon, UserCircleIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+
+const pathname = Astro.url.pathname;
+const navItems = [
+  { href: '/', label: 'Home', match: pathname === '/' || pathname.includes('/en/'), icon: HomeIcon },
+  { href: '/about', label: 'About', match: pathname === '/about' || pathname === '/about/', icon: UserCircleIcon },
+  {
+    href: '/subscribe',
+    label: 'Subscribe',
+    match: pathname === '/subscribe' || pathname === '/subscribe/',
+    icon: EnvelopeIcon,
+  },
+];
 ---
 <header>
-  <div class="flex items-center justify-between h-16 before:block">
-    <div class="grow flex justify-end space-x-4">
-      <!-- Light switch -->
-      <div class="flex flex-col justify-center ml-3">
-        <input
-          type="checkbox"
-          name="light-switch"
-          id="light-switch"
-          class="light-switch sr-only"
-        />
-        <label class="relative cursor-pointer p-2" for="light-switch">
+  <div class="md:hidden sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800 -mx-6 px-6">
+    <div class="flex items-center justify-between h-14">
+      <a href="/" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-slate-100">
+        <img class="rounded-full" src="/images/logo.png" width="24" height="24" alt="Tsukie" />
+        tsukie
+      </a>
+      <div class="flex items-center">
+        <input type="checkbox" id="light-switch-mobile" class="js-light-switch light-switch sr-only" />
+        <label class="relative cursor-pointer p-2" for="light-switch-mobile" aria-label="Switch to light / dark version">
           <svg class="dark:hidden" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
             <path class="fill-slate-300" d="M7 0h2v2H7zM12.88 1.637l1.414 1.415-1.415 1.413-1.413-1.414zM14 7h2v2h-2zM12.95 14.433l-1.414-1.413 1.413-1.415 1.415 1.414zM7 14h2v2H7zM2.98 14.364l-1.413-1.415 1.414-1.414 1.414 1.415zM0 7h2v2H0zM3.05 1.706 4.463 3.12 3.05 4.535 1.636 3.12z" />
             <path class="fill-slate-400" d="M8 4C5.8 4 4 5.8 4 8s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4Z" />
@@ -20,34 +31,64 @@
             <path class="fill-slate-400" d="M6.2 1C3.2 1.8 1 4.6 1 7.9 1 11.8 4.2 15 8.1 15c3.3 0 6-2.2 6.9-5.2C9.7 11.2 4.8 6.3 6.2 1Z" />
             <path class="fill-slate-500" d="M12.5 5a.625.625 0 0 1-.625-.625 1.252 1.252 0 0 0-1.25-1.25.625.625 0 1 1 0-1.25 1.252 1.252 0 0 0 1.25-1.25.625.625 0 1 1 1.25 0c.001.69.56 1.249 1.25 1.25a.625.625 0 1 1 0 1.25c-.69.001-1.249.56-1.25 1.25A.625.625 0 0 1 12.5 5Z" />
           </svg>
-          <span class="sr-only">Switch to light / dark version</span>
         </label>
       </div>
-
-      <!-- Subscribe Button -->
-      <div>
-        <a class="btn-sm text-slate-100 bg-sky-500 hover:bg-sky-600" href="/subscribe">
-          Subscribe
+    </div>
+    <nav class="h-12 flex items-center justify-around">
+      {navItems.map(({ href, label, match, icon: Icon }) => (
+        <a
+          href={href}
+          class:list={[
+            'inline-flex flex-col items-center gap-1 text-xs font-medium transition-colors',
+            match
+              ? 'text-sky-500'
+              : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200',
+          ]}
+        >
+          <Icon className="size-5" aria-hidden="true" />
+          <span>{label}</span>
         </a>
+      ))}
+    </nav>
+  </div>
+
+  <div class="hidden md:flex items-center justify-between h-16 before:block">
+    <div class="grow flex justify-end space-x-4">
+      <div class="flex flex-col justify-center ml-3">
+        <input type="checkbox" id="light-switch-desktop" class="js-light-switch light-switch sr-only" />
+        <label class="relative cursor-pointer p-2" for="light-switch-desktop" aria-label="Switch to light / dark version">
+          <svg class="dark:hidden" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+            <path class="fill-slate-300" d="M7 0h2v2H7zM12.88 1.637l1.414 1.415-1.415 1.413-1.413-1.414zM14 7h2v2h-2zM12.95 14.433l-1.414-1.413 1.413-1.415 1.415 1.414zM7 14h2v2H7zM2.98 14.364l-1.413-1.415 1.414-1.414 1.414 1.415zM0 7h2v2H0zM3.05 1.706 4.463 3.12 3.05 4.535 1.636 3.12z" />
+            <path class="fill-slate-400" d="M8 4C5.8 4 4 5.8 4 8s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4Z" />
+          </svg>
+          <svg class="hidden dark:block" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+            <path class="fill-slate-400" d="M6.2 1C3.2 1.8 1 4.6 1 7.9 1 11.8 4.2 15 8.1 15c3.3 0 6-2.2 6.9-5.2C9.7 11.2 4.8 6.3 6.2 1Z" />
+            <path class="fill-slate-500" d="M12.5 5a.625.625 0 0 1-.625-.625 1.252 1.252 0 0 0-1.25-1.25.625.625 0 1 1 0-1.25 1.252 1.252 0 0 0 1.25-1.25.625.625 0 1 1 1.25 0c.001.69.56 1.249 1.25 1.25a.625.625 0 1 1 0 1.25c-.69.001-1.249.56-1.25 1.25A.625.625 0 0 1 12.5 5Z" />
+          </svg>
+        </label>
+      </div>
+      <div>
+        <a class="btn-sm text-slate-100 bg-sky-500 hover:bg-sky-600" href="/subscribe">Subscribe</a>
       </div>
     </div>
   </div>
 </header>
 
 <script>
-  const lightSwitch = document.getElementById('light-switch') as HTMLInputElement;
-  if (lightSwitch) {
-    // Set initial state
-    lightSwitch.checked = document.documentElement.classList.contains('dark');
-
-    lightSwitch.addEventListener('change', () => {
-      if (lightSwitch.checked) {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
+  const lightSwitches = document.querySelectorAll('.js-light-switch') as NodeListOf<HTMLInputElement>;
+  const setTheme = (isDark: boolean) => {
+    document.documentElement.classList.toggle('dark', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    lightSwitches.forEach((switchInput) => {
+      switchInput.checked = isDark;
     });
-  }
+  };
+
+  const isDarkMode = document.documentElement.classList.contains('dark');
+  lightSwitches.forEach((switchInput) => {
+    switchInput.checked = isDarkMode;
+    switchInput.addEventListener('change', () => {
+      setTheme(switchInput.checked);
+    });
+  });
 </script>
