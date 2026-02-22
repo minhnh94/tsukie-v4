@@ -1,53 +1,125 @@
 ---
----
-<header>
-  <div class="flex items-center justify-between h-16 before:block">
-    <div class="grow flex justify-end space-x-4">
-      <!-- Light switch -->
-      <div class="flex flex-col justify-center ml-3">
-        <input
-          type="checkbox"
-          name="light-switch"
-          id="light-switch"
-          class="light-switch sr-only"
-        />
-        <label class="relative cursor-pointer p-2" for="light-switch">
-          <svg class="dark:hidden" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-            <path class="fill-slate-300" d="M7 0h2v2H7zM12.88 1.637l1.414 1.415-1.415 1.413-1.413-1.414zM14 7h2v2h-2zM12.95 14.433l-1.414-1.413 1.413-1.415 1.415 1.414zM7 14h2v2H7zM2.98 14.364l-1.413-1.415 1.414-1.414 1.414 1.415zM0 7h2v2H0zM3.05 1.706 4.463 3.12 3.05 4.535 1.636 3.12z" />
-            <path class="fill-slate-400" d="M8 4C5.8 4 4 5.8 4 8s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4Z" />
-          </svg>
-          <svg class="hidden dark:block" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-            <path class="fill-slate-400" d="M6.2 1C3.2 1.8 1 4.6 1 7.9 1 11.8 4.2 15 8.1 15c3.3 0 6-2.2 6.9-5.2C9.7 11.2 4.8 6.3 6.2 1Z" />
-            <path class="fill-slate-500" d="M12.5 5a.625.625 0 0 1-.625-.625 1.252 1.252 0 0 0-1.25-1.25.625.625 0 1 1 0-1.25 1.252 1.252 0 0 0 1.25-1.25.625.625 0 1 1 1.25 0c.001.69.56 1.249 1.25 1.25a.625.625 0 1 1 0 1.25c-.69.001-1.249.56-1.25 1.25A.625.625 0 0 1 12.5 5Z" />
-          </svg>
-          <span class="sr-only">Switch to light / dark version</span>
-        </label>
-      </div>
+const pathname = Astro.url.pathname;
 
-      <!-- Subscribe Button -->
-      <div>
-        <a class="btn-sm text-slate-100 bg-sky-500 hover:bg-sky-600" href="/subscribe">
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/subscribe', label: 'Subscribe' },
+];
+
+const isActive = (href) => {
+  if (href === '/') return pathname === '/' || pathname.includes('/en/');
+  return pathname === href || pathname === `${href}/`;
+};
+---
+<header class="md:pt-2">
+  <div class="hidden md:flex items-center justify-end h-16">
+    <nav aria-label="Primary" class="flex items-center gap-3 text-sm font-medium">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            'px-3 py-2 rounded-md transition-colors',
+            isActive(link.href)
+              ? 'text-sky-500 bg-sky-500/10'
+              : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <button
+        id="theme-toggle"
+        type="button"
+        class="px-3 py-2 rounded-md text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"
+        aria-label="Toggle dark mode"
+      >
+        Theme
+      </button>
+    </nav>
+  </div>
+
+  <nav
+    class="md:hidden fixed bottom-0 inset-x-0 z-50 border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur"
+    aria-label="Mobile bottom navigation"
+  >
+    <ul class="grid grid-cols-4">
+      <li>
+        <a
+          href="/"
+          class:list={[
+            'h-16 flex flex-col items-center justify-center gap-1 text-xs font-medium transition-colors',
+            isActive('/')
+              ? 'text-sky-500'
+              : 'text-slate-500 dark:text-slate-400',
+          ]}
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12 11.204 3.046a1.125 1.125 0 0 1 1.591 0L21.75 12M4.5 9.75V19.5A1.5 1.5 0 0 0 6 21h3.75v-6h4.5v6H18a1.5 1.5 0 0 0 1.5-1.5V9.75"/>
+          </svg>
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          href="/about"
+          class:list={[
+            'h-16 flex flex-col items-center justify-center gap-1 text-xs font-medium transition-colors',
+            isActive('/about')
+              ? 'text-sky-500'
+              : 'text-slate-500 dark:text-slate-400',
+          ]}
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/>
+          </svg>
+          About
+        </a>
+      </li>
+      <li>
+        <a
+          href="/subscribe"
+          class:list={[
+            'h-16 flex flex-col items-center justify-center gap-1 text-xs font-medium transition-colors',
+            isActive('/subscribe')
+              ? 'text-sky-500'
+              : 'text-slate-500 dark:text-slate-400',
+          ]}
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21.75 9-9 5.25L3.75 9m18 0A2.25 2.25 0 0 0 19.5 6.75h-15A2.25 2.25 0 0 0 2.25 9m19.5 0v6.75A2.25 2.25 0 0 1 19.5 18h-15a2.25 2.25 0 0 1-2.25-2.25V9"/>
+          </svg>
           Subscribe
         </a>
-      </div>
-    </div>
-  </div>
+      </li>
+      <li>
+        <button
+          id="theme-toggle-mobile"
+          type="button"
+          class="w-full h-16 flex flex-col items-center justify-center gap-1 text-xs font-medium text-slate-500 dark:text-slate-400 transition-colors"
+          aria-label="Toggle dark mode"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 1 0 21.752 15.002Z"/>
+          </svg>
+          Theme
+        </button>
+      </li>
+    </ul>
+  </nav>
 </header>
 
 <script>
-  const lightSwitch = document.getElementById('light-switch') as HTMLInputElement;
-  if (lightSwitch) {
-    // Set initial state
-    lightSwitch.checked = document.documentElement.classList.contains('dark');
+  const applyTheme = (darkMode) => {
+    document.documentElement.classList.toggle('dark', darkMode);
+    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+  };
 
-    lightSwitch.addEventListener('change', () => {
-      if (lightSwitch.checked) {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-    });
-  }
+  const toggleTheme = () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    applyTheme(!isDark);
+  };
+
+  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+  document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
 </script>
