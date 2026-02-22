@@ -13,8 +13,9 @@ import WidgetSponsor from '@/components/WidgetSponsor.astro';
 import { getPagesFromDB } from '@/lib/contentFetcher.js';
 import { TAG_LATEST } from '@/utils/constants.js';
 
+const PAGE_SIZE = 10;
 const pageInfo = await getPagesFromDB();
-const items = pageInfo.pages;
+const allItems = pageInfo.pages;
 
 const separateByTags = (data) => {
   const result = {};
@@ -26,7 +27,9 @@ const separateByTags = (data) => {
   return result;
 };
 
-const tags = [TAG_LATEST, ...Object.keys(separateByTags(items)).sort()];
+const tags = [TAG_LATEST, ...Object.keys(separateByTags(allItems)).sort()];
+const items = allItems.slice(0, PAGE_SIZE);
+const totalPages = Math.max(1, Math.ceil(allItems.length / PAGE_SIZE));
 ---
 
 <BaseLayout
@@ -42,7 +45,7 @@ const tags = [TAG_LATEST, ...Object.keys(separateByTags(items)).sort()];
       <div class="grow md:flex space-y-8 md:space-y-0 md:space-x-8 pb-16 md:pb-20">
         <MiddleArea>
           <div class="space-y-10">
-            <ArticlesList items={items} tags={tags} />
+            <ArticlesList items={items} tags={tags} totalPages={totalPages} />
             <Projects />
           </div>
         </MiddleArea>
