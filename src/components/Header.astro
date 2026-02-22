@@ -1,44 +1,12 @@
 ---
 const pathname = Astro.url.pathname;
 
-const links = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/subscribe', label: 'Subscribe' },
-];
-
 const isActive = (href) => {
   if (href === '/') return pathname === '/' || pathname.includes('/en/');
   return pathname === href || pathname === `${href}/`;
 };
 ---
-<header class="md:pt-2">
-  <div class="hidden md:flex items-center justify-end h-16">
-    <nav aria-label="Primary" class="flex items-center gap-3 text-sm font-medium">
-      {links.map((link) => (
-        <a
-          href={link.href}
-          class:list={[
-            'px-3 py-2 rounded-md transition-colors',
-            isActive(link.href)
-              ? 'text-sky-500 bg-sky-500/10'
-              : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200',
-          ]}
-        >
-          {link.label}
-        </a>
-      ))}
-      <button
-        id="theme-toggle"
-        type="button"
-        class="px-3 py-2 rounded-md text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"
-        aria-label="Toggle dark mode"
-      >
-        Theme
-      </button>
-    </nav>
-  </div>
-
+<header>
   <nav
     class="md:hidden fixed bottom-0 inset-x-0 z-50 border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur"
     aria-label="Mobile bottom navigation"
@@ -120,6 +88,5 @@ const isActive = (href) => {
     applyTheme(!isDark);
   };
 
-  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
   document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
 </script>

@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 
 interface Post {
   id: string;
@@ -77,12 +77,22 @@ export default function ArticlesIsland({ initialItems, tags, totalPages: initial
   const [activeTag, setActiveTag] = useState(TAG_LATEST);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(initialTotalPages);
+  const topRef = useRef<HTMLDivElement>(null);
+  const pendingScroll = useRef(false);
 
-  const fetchPage = useCallback(async (tag: string, page: number) => {
+  useEffect(() => {
+    if (pendingScroll.current) {
+      pendingScroll.current = false;
+      topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [items]);
+
+  const fetchPage = useCallback(async (tag: string, page: number, scroll = false) => {
     try {
       const res = await fetch(`/api/posts/${tag}/${page}.json`);
       if (!res.ok) throw new Error(`Failed: ${res.status}`);
       const data = await res.json();
+      if (scroll) pendingScroll.current = true;
       setItems(data.posts);
       setTotalPages(data.totalPages);
       setCurrentPage(data.currentPage);
@@ -97,7 +107,7 @@ export default function ArticlesIsland({ initialItems, tags, totalPages: initial
   }, [fetchPage]);
 
   return (
-    <div>
+    <div ref={topRef}>
       {/* Tab filters */}
       <ul className="flex flex-wrap text-sm border-b border-slate-100 dark:border-slate-800">
         {tags.map((tag) => (
@@ -129,7 +139,7 @@ export default function ArticlesIsland({ initialItems, tags, totalPages: initial
           {currentPage > 1 && (
             <a
               className="text-sky-500 hover:text-sky-400 cursor-pointer"
-              onClick={() => fetchPage(activeTag, currentPage - 1)}
+              onClick={() => fetchPage(activeTag, currentPage - 1, true)}
             >
               &lt; back
             </a>
@@ -140,7 +150,7 @@ export default function ArticlesIsland({ initialItems, tags, totalPages: initial
           {currentPage < totalPages && (
             <a
               className="text-sky-500 hover:text-sky-400 cursor-pointer"
-              onClick={() => fetchPage(activeTag, currentPage + 1)}
+              onClick={() => fetchPage(activeTag, currentPage + 1, true)}
             >
               next &gt;
             </a>
