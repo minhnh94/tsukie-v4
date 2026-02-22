@@ -3,7 +3,7 @@ const pathname = Astro.url.pathname;
 ---
 <div
   id="sidebar"
-  class="sticky top-0 w-16 md:w-24 shrink-0 h-screen overflow-y-auto no-scrollbar border-r border-slate-200 dark:border-slate-800 transition-all duration-300 block"
+  class="hidden md:block sticky top-0 w-16 md:w-24 shrink-0 h-screen overflow-y-auto no-scrollbar border-r border-slate-200 dark:border-slate-800 transition-all duration-300"
 >
   <div class="h-full flex flex-col justify-between after:flex-1 after:mt-auto">
     <div class="flex-1">
@@ -72,46 +72,5 @@ const pathname = Astro.url.pathname;
         </ul>
       </nav>
     </div>
-    <div class="pb-4 flex justify-center md:hidden">
-      <button
-        id="sidebar-toggle"
-        class="w-10 h-10 flex items-center justify-center rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-        aria-label="Hide sidebar"
-      >
-        <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-          <path d="M10 3L9 4l3 3-3 3 1 1 4-4-4-4z" />
-        </svg>
-      </button>
-    </div>
   </div>
 </div>
-
-<button
-  id="sidebar-show"
-  class="fixed left-0 top-1/2 -translate-y-1/2 z-50 w-8 h-12 items-center justify-center rounded-r border-r border-b border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors md:hidden hidden"
-  aria-label="Show sidebar"
->
-  <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 16 16">
-    <path d="M6 3L5 4l3 3-3 3 1 1 4-4-4-4z" />
-  </svg>
-</button>
-
-<script>
-  const sidebar = document.getElementById('sidebar');
-  const toggleBtn = document.getElementById('sidebar-toggle');
-  const showBtn = document.getElementById('sidebar-show');
-
-  if (toggleBtn && sidebar && showBtn) {
-    toggleBtn.addEventListener('click', () => {
-      sidebar.classList.add('hidden', 'md:block');
-      showBtn.classList.remove('hidden');
-      showBtn.classList.add('flex');
-    });
-
-    showBtn.addEventListener('click', () => {
-      sidebar.classList.remove('hidden', 'md:block');
-      showBtn.classList.add('hidden');
-      showBtn.classList.remove('flex');
-    });
-  }
-</script>
