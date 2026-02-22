@@ -6,7 +6,19 @@ import rehypeRaw from 'rehype-raw';
 import rehypeFigure from 'rehype-figure';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
+import { visit } from 'unist-util-visit';
 import { rehypeExternalLinks } from './rehypeExternalLinks.js';
+
+function rehypeLazyImages() {
+  return (tree) => {
+    visit(tree, 'element', (node) => {
+      if (node.tagName === 'img') {
+        node.properties.loading = 'lazy';
+        node.properties.decoding = 'async';
+      }
+    });
+  };
+}
 
 const processor = unified()
   .use(remarkParse)
@@ -14,7 +26,8 @@ const processor = unified()
   .use(remarkRehype, { allowDangerousHtml: true })
   .use(rehypeRaw)
   .use(rehypeFigure)
-  .use(rehypeHighlight, { detect: true })
+  .use(rehypeLazyImages)
+  .use(rehypeHighlight, { ignoreMissing: true })
   .use(rehypeExternalLinks)
   .use(rehypeStringify);
 
