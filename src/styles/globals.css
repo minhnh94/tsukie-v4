@@ -13,6 +13,12 @@
 @import "additional-styles/theme.css";
 
 /* Additional Tailwind directives: https://tailwindcss.com/docs/functions-and-directives/#responsive */
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
 @layer utilities {
 	.rtl {
 		direction: rtl;

@@ -1,8 +1,8 @@
 ---
 import { renderMarkdown } from '@/lib/markdownRenderer.js';
 
-const { content } = Astro.props;
-const html = await renderMarkdown(content);
+const { content, html: preRenderedHtml } = Astro.props;
+const html = preRenderedHtml ?? await renderMarkdown(content);
 ---
 <div class="my-4">
   <div class="prose dark:prose-invert" set:html={html} />
