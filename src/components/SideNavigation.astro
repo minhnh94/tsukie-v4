@@ -5,7 +5,7 @@ const pathname = Astro.url.pathname;
   id="sidebar"
   class="hidden md:block sticky top-0 w-16 md:w-24 shrink-0 h-screen overflow-y-auto no-scrollbar border-r border-slate-200 dark:border-slate-800 transition-all duration-300"
 >
-  <div class="h-full flex flex-col justify-between after:flex-1 after:mt-auto">
+  <div class="h-full flex flex-col justify-between">
     <div class="flex-1">
       {pathname !== '/' && (
         <div class="flex justify-center my-4">
@@ -71,6 +71,18 @@ const pathname = Astro.url.pathname;
           </li>
         </ul>
       </nav>
+    </div>
+    <div class="flex-1 flex items-end pb-6">
+      <button
+        id="theme-toggle-desktop"
+        type="button"
+        class="w-full h-6 flex items-center justify-center text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400 transition-colors"
+        aria-label="Toggle dark mode"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 1 0 21.752 15.002Z"/>
+        </svg>
+      </button>
     </div>
   </div>
 </div>
