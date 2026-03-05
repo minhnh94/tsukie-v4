@@ -94,9 +94,10 @@ None yet.
 | 2 | migrate to Astro 5 content collections: getCollection/render replaces fs/gray-matter/unified pipeline; content.config.ts + contentFetcher.ts rewrite | 2026-03-06 | e22dafe | [2-you-re-loading-md-content-frontmatter-in](./quick/2-you-re-loading-md-content-frontmatter-in/) |
 | 3 | remove unused deps: gray-matter, reading-time, highlight.js (12 packages total) — no longer needed after quick-2 Astro content collections migration | 2026-03-06 | 9fd3371 | [3-check-and-remove-unused-unneeded-depende](./quick/3-check-and-remove-unused-unneeded-depende/) |
 | 4 | fix figcaption not smaller and centered like production | 2026-03-05 | 8f04986 | [4-fix-figcaption-not-smaller-and-centered-](./quick/4-fix-figcaption-not-smaller-and-centered-/) |
+| 5 | remove duplicated figcaption: rehype plugin strips duplicate <p> sibling after rehype-figure figures | 2026-03-06 | 9e31f05 | [5-remove-duplicated-figcaption](./quick/5-remove-duplicated-figcaption/) |
 
 ## Session Continuity
 
 Last session: 2026-03-05T16:41:03.260Z
-Stopped at: Completed quick-3: check and remove unused dependencies
+Stopped at: Completed quick-5: remove duplicated figcaption
 Resume file: None
