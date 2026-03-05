@@ -89,3 +89,11 @@ None - no external service configuration required.
 ---
 *Phase: quick-3*
 *Completed: 2026-03-06*
+
+## Self-Check: PASSED
+
+- FOUND: `.planning/quick/3-check-and-remove-unused-unneeded-depende/3-SUMMARY.md`
+- FOUND: `package.json`
+- FOUND: `package-lock.json`
+- FOUND: commit `9fd3371`
+- PASS: gray-matter, reading-time, highlight.js removed from package.json
