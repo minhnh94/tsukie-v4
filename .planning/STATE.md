@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-03-05)
 Phase: 1 of 3 (Content Source Migration)
 Plan: 0 of ? in current phase
 Status: Ready to plan
-Last activity: 2026-03-05 -- Roadmap created
+Last activity: 2026-03-05 - Completed quick task 1: update content loading: posts from src/markdown/posts, about from about.md, endless-defense from endless-defense-description.md, privacy-policy from privacy-policy.md
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -81,6 +81,12 @@ None yet.
 ### Blockers/Concerns
 
 None yet.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 1 | update content loading: posts from src/markdown/posts, about from about.md, endless-defense from endless-defense-description.md, privacy-policy from privacy-policy.md | 2026-03-05 | 87254f0 | [1-update-content-loading-posts-from-src-ma](./quick/1-update-content-loading-posts-from-src-ma/) |
 
 ## Session Continuity
 
