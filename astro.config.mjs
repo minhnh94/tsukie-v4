@@ -4,10 +4,14 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import sentry from '@sentry/astro';
 import spotlightjs from '@spotlightjs/astro';
+import rehypeFigure from 'rehype-figure';
 
 export default defineConfig({
   site: 'https://tsukie.com',
   output: 'static',
+  markdown: {
+    rehypePlugins: [rehypeFigure],
+  },
   integrations: [
     tailwind(),
     react(),
