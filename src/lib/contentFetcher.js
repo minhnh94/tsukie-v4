@@ -39,6 +39,7 @@ const convertToConsumable = (frontmatter) => {
     slug: frontmatter.slug,
     summary: frontmatter.summary,
     date: dayjs(frontmatter.date).format('MMM DD, YYYY'),
+    rawDate: dayjs(frontmatter.date).toISOString(),
     readCount: frontmatter.readCount || 0,
   };
 };

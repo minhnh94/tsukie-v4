@@ -42,7 +42,6 @@ const headings = extractHeadings(renderedHtml);
 const readingStats = readingTime(mdString);
 const pageProperties = await getPagePropertiesById(pageId);
 
-import dayjs from "dayjs";
 const postUrl = `https://tsukie.com/en/${tag}/${post}`;
 const blogPostingSchema = {
   "@context": "https://schema.org",
@@ -50,7 +49,7 @@ const blogPostingSchema = {
   headline: pageProperties.title,
   description: pageProperties.summary,
   image: pageProperties.thumbnail,
-  datePublished: dayjs(pageProperties.date, "MMM DD, YYYY").toISOString(),
+  datePublished: pageProperties.rawDate,
   url: postUrl,
   author: {
     "@type": "Person",

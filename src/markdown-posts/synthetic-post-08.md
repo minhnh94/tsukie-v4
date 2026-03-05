@@ -5,7 +5,7 @@ date: 2025-04-17
 ready: true
 thumbnail: https://placehold.co/600x400/1e293b/38bdf8?text=Life+Post
 slug: reading-more-books-changed-how-i-write-code
-summary: I started reading 30 books a year and discovered that great writing and great code share the same principles: clarity, restraint, and respect for the reader.
+summary: "I started reading 30 books a year and discovered that great writing and great code share the same principles: clarity, restraint, and respect for the reader."
 readCount: 78
 ---
 

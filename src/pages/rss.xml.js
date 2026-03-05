@@ -11,7 +11,7 @@ export async function GET(context) {
     items: pages.map((page) => ({
       title: page.title,
       description: page.summary,
-      pubDate: new Date(page.date),
+      pubDate: new Date(page.rawDate),
       link: `/en/${page.tag}/${page.slug}`,
     })),
   });

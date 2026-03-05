@@ -19,7 +19,7 @@ interface Props {
 const TAG_LATEST = 'latest';
 
 function ArticleCard({ post, onTagClick }: { post: Post; onTagClick: (tag: string) => void }) {
-  const href = `en/${post.tag}/${post.slug}`;
+  const href = `/en/${post.tag}/${post.slug}`;
   return (
     <article className="py-5 border-b border-slate-100 dark:border-slate-800">
       <div className="flex items-start">

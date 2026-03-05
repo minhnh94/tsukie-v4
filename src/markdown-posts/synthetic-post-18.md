@@ -5,7 +5,7 @@ date: 2025-09-26
 ready: true
 thumbnail: https://placehold.co/600x400/1e293b/38bdf8?text=Life+Post
 slug: the-year-i-stopped-optimizing-and-started-finishing
-summary: I used to spend more time optimizing my productivity system than doing actual work. One realization changed everything: finished is infinitely better than perfectly planned.
+summary: "I used to spend more time optimizing my productivity system than doing actual work. One realization changed everything: finished is infinitely better than perfectly planned."
 readCount: 215
 ---
 
