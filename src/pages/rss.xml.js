@@ -1,5 +1,5 @@
 import rss from '@astrojs/rss';
-import { getPagesFromDB } from '@/lib/contentFetcher.js';
+import { getPagesFromDB } from '@/lib/contentFetcher';
 
 export async function GET(context) {
   const { pages } = await getPagesFromDB();

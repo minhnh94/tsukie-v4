@@ -1,5 +1,5 @@
 import type { APIRoute, GetStaticPaths } from 'astro';
-import { getPagesFromDB } from '@/lib/contentFetcher.js';
+import { getPagesFromDB } from '@/lib/contentFetcher';
 import { TAG_LATEST } from '@/utils/constants.js';
 
 const PAGE_SIZE = 10;

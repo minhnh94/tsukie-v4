@@ -9,9 +9,9 @@ import WidgetSponsor from '@/components/WidgetSponsor.astro';
 import ParagraphFromCms from '@/components/ParagraphFromCms.astro';
 import CommentSection from '@/components/CommentSection.astro';
 import UnityPlayer from '@/components/UnityPlayer.jsx';
-import { getStaticPageContent } from '@/lib/contentFetcher.js';
+import { getStaticPageContent } from '@/lib/contentFetcher';
 
-const content = getStaticPageContent('endless-defense-description.md');
+const content = await getStaticPageContent('endless-defense-description');
 ---
 
 <BaseLayout

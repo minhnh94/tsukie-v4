@@ -9,9 +9,9 @@ import Highlight from '@/components/Highlight.astro';
 import WidgetNewsletter from '@/components/WidgetNewsletter.astro';
 import WidgetSponsor from '@/components/WidgetSponsor.astro';
 import ParagraphFromCms from '@/components/ParagraphFromCms.astro';
-import { getStaticPageContent } from '@/lib/contentFetcher.js';
+import { getStaticPageContent } from '@/lib/contentFetcher';
 
-const content = getStaticPageContent('about.md');
+const content = await getStaticPageContent('about');
 ---
 
 <BaseLayout

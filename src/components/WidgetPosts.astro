@@ -1,5 +1,5 @@
 ---
-import { getPagesForSidebar } from '@/lib/contentFetcher.js';
+import { getPagesForSidebar } from '@/lib/contentFetcher';
 
 const { chronologically = false } = Astro.props;
 const suggestedPosts = await getPagesForSidebar(3, chronologically);

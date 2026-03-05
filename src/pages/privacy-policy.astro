@@ -8,9 +8,9 @@ import RightSidebar from '@/components/RightSidebar.astro';
 import WidgetNewsletter from '@/components/WidgetNewsletter.astro';
 import WidgetSponsor from '@/components/WidgetSponsor.astro';
 import ParagraphFromCms from '@/components/ParagraphFromCms.astro';
-import { getStaticPageContent } from '@/lib/contentFetcher.js';
+import { getStaticPageContent } from '@/lib/contentFetcher';
 
-const content = getStaticPageContent('privacy-policy.md');
+const content = await getStaticPageContent('privacy-policy');
 ---
 
 <BaseLayout

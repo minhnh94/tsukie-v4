@@ -1,5 +1,4 @@
 ---
-import "highlight.js/styles/github-dark.min.css";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Screen from "@/components/Screen.astro";
 import SideNavigation from "@/components/SideNavigation.astro";
@@ -9,18 +8,15 @@ import RightSidebar from "@/components/RightSidebar.astro";
 import WidgetNewsletter from "@/components/WidgetNewsletter.astro";
 import WidgetSponsor from "@/components/WidgetSponsor.astro";
 import WidgetPosts from "@/components/WidgetPosts.astro";
-import ParagraphFromCms from "@/components/ParagraphFromCms.astro";
 import WidgetToc from "@/components/WidgetToc.astro";
 import CommentSection from "@/components/CommentSection.astro";
 import ShareBtnRow from "@/components/ShareBtnRow.astro";
-import readingTime from "reading-time";
-import { renderMarkdown, extractHeadings } from "@/lib/markdownRenderer.js";
 import {
   getPagesFromDB,
   getPageIdBySlug,
   getPagePropertiesById,
-  getPageContentAsMarkdownById,
-} from "@/lib/contentFetcher.js";
+  renderPostById,
+} from "@/lib/contentFetcher";
 
 export async function getStaticPaths() {
   const { pages } = await getPagesFromDB();
@@ -36,11 +32,15 @@ if (!pageId) {
   return Astro.redirect("/404");
 }
 
-const mdString = await getPageContentAsMarkdownById(pageId);
-const renderedHtml = await renderMarkdown(mdString);
-const headings = extractHeadings(renderedHtml);
-const readingStats = readingTime(mdString);
+const rendered = await renderPostById(pageId);
+if (!rendered) {
+  return Astro.redirect("/404");
+}
+const { Content, headings } = rendered;
 const pageProperties = await getPagePropertiesById(pageId);
+if (!pageProperties) {
+  return Astro.redirect("/404");
+}
 
 const postUrl = `https://tsukie.com/en/${tag}/${post}`;
 const blogPostingSchema = {
@@ -101,10 +101,6 @@ const blogPostingSchema = {
                 <div class="text-xs text-slate-500 uppercase">
                   <span class="text-sky-500">&mdash;</span>
                   {pageProperties.date}
-                  <span class="text-slate-400 dark:text-slate-600"
-                    >&middot;</span
-                  >
-                  {readingStats.text}
                 </div>
                 <ShareBtnRow />
               </div>
@@ -117,7 +113,9 @@ const blogPostingSchema = {
             <div class="block md:hidden">
               <WidgetToc headings={headings} />
             </div>
-            <ParagraphFromCms html={renderedHtml} />
+            <div class="prose dark:prose-invert max-w-none">
+              <Content />
+            </div>
           </article>
 
           <CommentSection />
