@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-03-05)
 Phase: 1 of 3 (Content Source Migration)
 Plan: 0 of ? in current phase
 Status: Ready to plan
-Last activity: 2026-03-05 - Completed quick task 4: fix figcaption not smaller and centered like production
+Last activity: 2026-03-06 - Completed quick task 5: remove duplicated figcaption
 
 Progress: [░░░░░░░░░░] 0%
 
