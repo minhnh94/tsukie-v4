@@ -1,8 +1,10 @@
 This is the code behind **tsukie.com**.
 
 Current stack: **Astro + Cloudflare**
-Previous life: **Next.js + Vercel + Notion CMS**
+Previous life: **Next.js + Vercel**
 Theme was from Cruip.
+
+Content lives in a separate git repo ([tsukie-posts](https://github.com/minhnh94/tsukie-posts)) pulled in as a git submodule at `src/markdown-posts/`. Posts are local markdown files with YAML frontmatter — no external CMS.
 
 Repos:
 
