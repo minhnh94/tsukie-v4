@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-03-05)
 Phase: 1 of 3 (Content Source Migration)
 Plan: 0 of ? in current phase
 Status: Ready to plan
-Last activity: 2026-03-06 - Completed quick task 2: migrate blog post rendering to Astro content collections (getCollection/render), replacing fs/gray-matter/unified pipeline
+Last activity: 2026-03-05 - Completed quick task 4: fix figcaption not smaller and centered like production
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -93,6 +93,7 @@ None yet.
 | 1 | update content loading: posts from src/markdown/posts, about from about.md, endless-defense from endless-defense-description.md, privacy-policy from privacy-policy.md | 2026-03-05 | 87254f0 | [1-update-content-loading-posts-from-src-ma](./quick/1-update-content-loading-posts-from-src-ma/) |
 | 2 | migrate to Astro 5 content collections: getCollection/render replaces fs/gray-matter/unified pipeline; content.config.ts + contentFetcher.ts rewrite | 2026-03-06 | e22dafe | [2-you-re-loading-md-content-frontmatter-in](./quick/2-you-re-loading-md-content-frontmatter-in/) |
 | 3 | remove unused deps: gray-matter, reading-time, highlight.js (12 packages total) — no longer needed after quick-2 Astro content collections migration | 2026-03-06 | 9fd3371 | [3-check-and-remove-unused-unneeded-depende](./quick/3-check-and-remove-unused-unneeded-depende/) |
+| 4 | fix figcaption not smaller and centered like production | 2026-03-05 | 8f04986 | [4-fix-figcaption-not-smaller-and-centered-](./quick/4-fix-figcaption-not-smaller-and-centered-/) |
 
 ## Session Continuity
 
