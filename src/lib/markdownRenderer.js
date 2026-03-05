@@ -35,8 +35,6 @@ const processor = unified()
 
 export async function renderMarkdown(markdown) {
   const result = await processor.process(markdown);
-  // notion-to-md outputs "undefined" for unsupported block types,
-  // which renders as a standalone <p>undefined</p>. Remove only those.
   return String(result).replace(/<p>undefined<\/p>/g, '');
 }
 
