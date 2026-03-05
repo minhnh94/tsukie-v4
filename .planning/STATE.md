@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 03-cleanup-and-submodule/03-01-PLAN.md
-last_updated: "2026-03-05T16:02:14.980Z"
+stopped_at: Completed 03-cleanup-and-submodule/03-02-PLAN.md
+last_updated: "2026-03-05T16:07:52.386Z"
 last_activity: 2026-03-05 -- Roadmap created
 progress:
   total_phases: 3
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 5
-  completed_plans: 4
+  completed_plans: 5
   percent: 0
 ---
 
@@ -54,6 +54,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-data-access-verification P01 | 15 | 2 tasks | 38 files |
 | Phase 02-data-access-verification P02 | 5 | 3 tasks | 25 files |
 | Phase 03-cleanup-and-submodule P01 | 134 | 2 tasks | 5 files |
+| Phase 03-cleanup-and-submodule P02 | 15 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -70,6 +71,8 @@ Recent decisions affecting current work:
 - [Phase 02-data-access-verification]: Delete all synthetic posts after verification passes — real posts come from submodule repo in Phase 3
 - [Phase 03-cleanup-and-submodule]: Keep .replace(/<p>undefined<\/p>/g, '') in markdownRenderer.js as harmless defensive code even without notion-to-md
 - [Phase 03-cleanup-and-submodule]: README updated surgically (one line + one paragraph) to preserve personal writing voice
+- [Phase 03-cleanup-and-submodule]: src/markdown-posts converted from tracked directory to git submodule — content lives independently in tsukie-posts.git
+- [Phase 03-cleanup-and-submodule]: Cloudflare Pages requires manual GitHub app access grant to tsukie-posts repo before deployment will succeed
 
 ### Pending Todos
 
@@ -81,6 +84,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-05T16:02:14.977Z
-Stopped at: Completed 03-cleanup-and-submodule/03-01-PLAN.md
+Last session: 2026-03-05T16:07:52.383Z
+Stopped at: Completed 03-cleanup-and-submodule/03-02-PLAN.md
 Resume file: None

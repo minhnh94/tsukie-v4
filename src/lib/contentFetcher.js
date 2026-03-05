@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import dayjs from 'dayjs';
 
-const POSTS_DIR = path.join(process.cwd(), 'src/markdown-posts');
+const POSTS_DIR = path.join(process.cwd(), 'src/markdown/posts');
 const PAGE_SIZE = 10;
 
 let _cachedPosts = null;
@@ -137,4 +137,11 @@ export const getPagePropertiesById = async (pageId) => {
 export const getPageContentAsMarkdownById = async (pageId) => {
   const post = loadAllPosts().find((p) => p.frontmatter.slug === pageId);
   return post ? post.content : '';
+};
+
+const STATIC_PAGES_DIR = path.join(process.cwd(), 'src/markdown');
+
+export const getStaticPageContent = (filename) => {
+  const filePath = path.join(STATIC_PAGES_DIR, filename);
+  return fs.readFileSync(filePath, 'utf8');
 };

@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Content Source Migration** - Rewrite contentFetcher.js to read and parse local markdown files (completed 2026-03-05)
 - [ ] **Phase 2: Data Access Verification** - All pages, endpoints, and widgets serve correct data from local source
-- [ ] **Phase 3: Cleanup and Submodule** - Remove Notion dependencies and configure git submodule
+- [x] **Phase 3: Cleanup and Submodule** - Remove Notion dependencies and configure git submodule (completed 2026-03-05)
 
 ## Phase Details
 
@@ -57,7 +57,7 @@ Plans:
   2. NOTION_API_KEY and NOTION_DATABASE_ID are not referenced anywhere in the codebase
   3. src/markdown-posts/ is configured as a git submodule pointing to a separate GitHub repo
   4. The site builds and deploys successfully with zero Notion-related code or configuration
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 Plans:
 - [ ] 03-01-PLAN.md -- Remove Notion packages, env vars, dead code; update README
@@ -72,4 +72,4 @@ Phases execute in numeric order: 1 -> 2 -> 3
 |-------|----------------|--------|-----------|
 | 1. Content Source Migration | 1/1 | Complete   | 2026-03-05 |
 | 2. Data Access Verification | 0/2 | Not started | - |
-| 3. Cleanup and Submodule | 0/2 | Not started | - |
+| 3. Cleanup and Submodule | 2/2 | Complete   | 2026-03-05 |
