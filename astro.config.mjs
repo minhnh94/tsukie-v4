@@ -5,13 +5,16 @@ import sitemap from '@astrojs/sitemap';
 import sentry from '@sentry/astro';
 import spotlightjs from '@spotlightjs/astro';
 import rehypeFigure from 'rehype-figure';
-import { rehypeRemoveFigcaptionDuplicate } from './src/lib/rehypeRemoveFigcaptionDuplicate.js';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const remarkRemoveFigcaptionDuplicate = require('./src/lib/remarkRemoveFigcaptionDuplicate.js');
 
 export default defineConfig({
   site: 'https://tsukie.com',
   output: 'static',
   markdown: {
-    rehypePlugins: [rehypeFigure, rehypeRemoveFigcaptionDuplicate],
+    remarkPlugins: [remarkRemoveFigcaptionDuplicate],
+    rehypePlugins: [rehypeFigure],
   },
   integrations: [
     tailwind(),
