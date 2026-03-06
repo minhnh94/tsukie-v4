@@ -100,5 +100,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-05T16:41:03.260Z
-Stopped at: Completed quick-6: refactor figcaption handling to MDX with ImageFigure component (awaiting human verify)
+Stopped at: Completed quick-6: refactor figcaption handling to MDX with ImageFigure component
 Resume file: None
