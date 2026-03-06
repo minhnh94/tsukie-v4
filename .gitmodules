@@ -1,4 +1,0 @@
-[submodule "src/markdown"]
-	path = src/markdown
-	url = https://github.com/minhnh94/tsukie-posts.git
-	branch = main

@@ -36,3 +36,6 @@ yarn-error.log*
 
 # planning
 .planning/
+
+# posts submodule (cloned during build)
+/src/markdown/
