@@ -14,7 +14,7 @@ const convertToConsumable = (entry: Awaited<ReturnType<typeof loadAllPosts>>[num
   return {
     id: entry.data.slug,
     title: entry.data.title,
-    thumbnail: entry.data.thumbnail,
+    thumbnail: entry.data.thumbnail.src,
     ready: entry.data.ready,
     tag: entry.data.tags,
     slug: entry.data.slug,
