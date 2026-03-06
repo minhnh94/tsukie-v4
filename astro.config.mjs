@@ -4,19 +4,13 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import sentry from '@sentry/astro';
 import spotlightjs from '@spotlightjs/astro';
-import rehypeFigure from 'rehype-figure';
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const remarkRemoveFigcaptionDuplicate = require('./src/lib/remarkRemoveFigcaptionDuplicate.js');
+import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   site: 'https://tsukie.com',
   output: 'static',
-  markdown: {
-    remarkPlugins: [remarkRemoveFigcaptionDuplicate],
-    rehypePlugins: [rehypeFigure],
-  },
   integrations: [
+    mdx(),
     tailwind(),
     react(),
     sitemap(),
