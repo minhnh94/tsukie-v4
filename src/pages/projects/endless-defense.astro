@@ -6,12 +6,13 @@ import MainContent from '@/components/MainContent.astro';
 import MiddleArea from '@/components/MiddleArea.astro';
 import RightSidebar from '@/components/RightSidebar.astro';
 import WidgetSponsor from '@/components/WidgetSponsor.astro';
-import ParagraphFromCms from '@/components/ParagraphFromCms.astro';
 import CommentSection from '@/components/CommentSection.astro';
 import UnityPlayer from '@/components/UnityPlayer.jsx';
-import { getStaticPageContent } from '@/lib/contentFetcher';
+import { renderStaticPage } from '@/lib/contentFetcher';
 
-const content = await getStaticPageContent('endless-defense-description');
+const rendered = await renderStaticPage('endless-defense-description');
+if (!rendered) throw new Error('Static page not found: endless-defense-description');
+const { Content } = rendered;
 ---
 
 <BaseLayout
@@ -39,7 +40,11 @@ const content = await getStaticPageContent('endless-defense-description');
           <div class="hidden lg:block">
             <UnityPlayer client:visible />
           </div>
-          <ParagraphFromCms content={content} />
+          <div class="my-4">
+            <div class="prose dark:prose-invert">
+              <Content />
+            </div>
+          </div>
           <CommentSection />
         </MiddleArea>
         <RightSidebar>

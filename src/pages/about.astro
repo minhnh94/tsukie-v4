@@ -8,10 +8,11 @@ import RightSidebar from '@/components/RightSidebar.astro';
 import Highlight from '@/components/Highlight.astro';
 import WidgetNewsletter from '@/components/WidgetNewsletter.astro';
 import WidgetSponsor from '@/components/WidgetSponsor.astro';
-import ParagraphFromCms from '@/components/ParagraphFromCms.astro';
-import { getStaticPageContent } from '@/lib/contentFetcher';
+import { renderStaticPage } from '@/lib/contentFetcher';
 
-const content = await getStaticPageContent('about');
+const rendered = await renderStaticPage('about');
+if (!rendered) throw new Error('Static page not found: about');
+const { Content } = rendered;
 ---
 
 <BaseLayout
@@ -28,7 +29,11 @@ const content = await getStaticPageContent('about');
           <section>
             <h1 class="h1 font-aspekta mb-5"><Highlight>Tsukie</Highlight> - Coding x Indie 🤟</h1>
             <img class="w-full" src="/images/about.jpg" width="692" height="390" alt="About" />
-            <ParagraphFromCms content={content} />
+            <div class="my-4">
+              <div class="prose dark:prose-invert">
+                <Content />
+              </div>
+            </div>
           </section>
         </MiddleArea>
         <RightSidebar>

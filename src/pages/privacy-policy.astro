@@ -7,10 +7,11 @@ import MiddleArea from '@/components/MiddleArea.astro';
 import RightSidebar from '@/components/RightSidebar.astro';
 import WidgetNewsletter from '@/components/WidgetNewsletter.astro';
 import WidgetSponsor from '@/components/WidgetSponsor.astro';
-import ParagraphFromCms from '@/components/ParagraphFromCms.astro';
-import { getStaticPageContent } from '@/lib/contentFetcher';
+import { renderStaticPage } from '@/lib/contentFetcher';
 
-const content = await getStaticPageContent('privacy-policy');
+const rendered = await renderStaticPage('privacy-policy');
+if (!rendered) throw new Error('Static page not found: privacy-policy');
+const { Content } = rendered;
 ---
 
 <BaseLayout
@@ -26,7 +27,11 @@ const content = await getStaticPageContent('privacy-policy');
         <MiddleArea>
           <section>
             <h1 class="h1 font-aspekta mb-5">Privacy Policy</h1>
-            <ParagraphFromCms content={content} />
+            <div class="my-4">
+              <div class="prose dark:prose-invert">
+                <Content />
+              </div>
+            </div>
           </section>
         </MiddleArea>
         <RightSidebar>

@@ -130,8 +130,10 @@ export const renderPostById = async (slug: string) => {
   return { Content, headings };
 };
 
-export const getStaticPageContent = async (slug: string): Promise<string> => {
+export const renderStaticPage = async (slug: string) => {
   const entries = await getCollection('pages');
   const entry = entries.find((e) => e.id === slug);
-  return entry?.body ?? '';
+  if (!entry) return null;
+  const { Content } = await render(entry);
+  return { Content };
 };
