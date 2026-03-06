@@ -5,7 +5,7 @@ milestone_name: milestone
 status: planning
 stopped_at: "Completed quick-3: check and remove unused dependencies"
 last_updated: "2026-03-05T16:41:03.263Z"
-last_activity: "2026-03-06 - Completed quick task 2: migrate blog post rendering to Astro content collections (getCollection/render), replacing fs/gray-matter/unified pipeline"
+last_activity: "2026-03-06 - Completed quick task 6: refactor figcaption handling to MDX with ImageFigure component"
 progress:
   total_phases: 3
   completed_phases: 3
@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-03-05)
 Phase: 1 of 3 (Content Source Migration)
 Plan: 0 of ? in current phase
 Status: Ready to plan
-Last activity: 2026-03-06 - Completed quick task 5: remove duplicated figcaption
+Last activity: 2026-03-06 - Completed quick task 6: refactor figcaption handling to MDX with ImageFigure component
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -95,9 +95,10 @@ None yet.
 | 3 | remove unused deps: gray-matter, reading-time, highlight.js (12 packages total) — no longer needed after quick-2 Astro content collections migration | 2026-03-06 | 9fd3371 | [3-check-and-remove-unused-unneeded-depende](./quick/3-check-and-remove-unused-unneeded-depende/) |
 | 4 | fix figcaption not smaller and centered like production | 2026-03-05 | 8f04986 | [4-fix-figcaption-not-smaller-and-centered-](./quick/4-fix-figcaption-not-smaller-and-centered-/) |
 | 5 | remove duplicated figcaption: rehype plugin strips duplicate <p> sibling after rehype-figure figures | 2026-03-06 | 9e31f05 | [5-remove-duplicated-figcaption](./quick/5-remove-duplicated-figcaption/) |
+| 6 | refactor figcaption handling: replace rehype-figure + remark plugin with MDX + ImageFigure.astro component; convert 13 posts to .mdx | 2026-03-06 | 347da5c | [6-refactor-figcaption-handling-to-mdx-with](./quick/6-refactor-figcaption-handling-to-mdx-with/) |
 
 ## Session Continuity
 
 Last session: 2026-03-05T16:41:03.260Z
-Stopped at: Completed quick-5: remove duplicated figcaption
+Stopped at: Completed quick-6: refactor figcaption handling to MDX with ImageFigure component (awaiting human verify)
 Resume file: None
