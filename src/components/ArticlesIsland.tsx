@@ -22,16 +22,18 @@ function ArticleCard({ post, onTagClick }: { post: Post; onTagClick: (tag: strin
   const href = `/en/${post.tag}/${post.slug}`;
   return (
     <article className="py-5 border-b border-slate-100 dark:border-slate-800">
-      <div className="flex items-start">
-        <img
-          className="rounded w-16 h-16 sm:w-[88px] sm:h-[88px] object-cover mr-6"
-          src={post.thumbnail}
-          width={88}
-          height={88}
-          alt={post.title}
-          loading="lazy"
-        />
-        <div>
+      <div className="grid grid-cols-[96px_minmax(0,1fr)] sm:grid-cols-[136px_minmax(0,1fr)] gap-x-6 gap-y-3 items-start">
+        <div className="w-24 h-16 sm:w-[136px] sm:h-[88px] rounded bg-slate-100 dark:bg-slate-800 overflow-hidden">
+          <img
+            className="w-full h-full object-contain"
+            src={post.thumbnail}
+            width={136}
+            height={88}
+            alt={post.title}
+            loading="lazy"
+          />
+        </div>
+        <div className="min-w-0">
           <div className="text-xs text-slate-500 uppercase mb-1">
             <span className="text-sky-500">&mdash;</span> {post.date} in{' '}
             <span
@@ -49,24 +51,8 @@ function ArticleCard({ post, onTagClick }: { post: Post; onTagClick: (tag: strin
               {post.title}
             </a>
           </h3>
-          <div className="flex">
-            <div className="grow text-sm text-slate-500 dark:text-slate-400">{post.summary}</div>
-            <a
-              className="hidden lg:flex shrink-0 text-sky-500 items-center justify-center w-12 group"
-              href={href}
-              tabIndex={-1}
-            >
-              <svg
-                className="fill-current group-hover:translate-x-2 duration-150 ease-in-out"
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="12"
-              >
-                <path d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z" />
-              </svg>
-            </a>
-          </div>
         </div>
+        <div className="col-span-2 text-sm text-slate-500 dark:text-slate-400">{post.summary}</div>
       </div>
     </article>
   );
