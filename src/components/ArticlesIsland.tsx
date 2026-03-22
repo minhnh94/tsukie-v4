@@ -21,18 +21,14 @@ const TAG_LATEST = 'latest';
 function ArticleCard({ post, onTagClick }: { post: Post; onTagClick: (tag: string) => void }) {
   const href = `/en/${post.tag}/${post.slug}`;
   return (
-    <article className="py-5 border-b border-slate-100 dark:border-slate-800">
-      <div className="grid grid-cols-[96px_minmax(0,1fr)] sm:grid-cols-[136px_minmax(0,1fr)] gap-x-6 gap-y-3 items-start">
-        <div className="w-24 h-16 sm:w-[136px] sm:h-[88px] rounded bg-slate-100 dark:bg-slate-800 overflow-hidden">
-          <img
-            className="w-full h-full object-contain"
-            src={post.thumbnail}
-            width={136}
-            height={88}
-            alt={post.title}
-            loading="lazy"
-          />
-        </div>
+    <article className="relative py-5 px-4 rounded-lg border border-slate-200 dark:border-slate-800 odd:-rotate-1 even:rotate-1 hover:rotate-0 transition-transform duration-700 hover:duration-100 ease-in-out overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-100 pointer-events-none"
+        style={{ backgroundImage: `url(${post.thumbnail})` }}
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-white/75 dark:bg-slate-900/75 pointer-events-none" aria-hidden="true" />
+      <div className="relative z-10 grid grid-cols-1 gap-y-3 items-start">
         <div className="min-w-0">
           <div className="text-xs text-slate-500 uppercase mb-1">
             <span className="text-sky-500">&mdash;</span> {post.date} in{' '}
@@ -52,7 +48,7 @@ function ArticleCard({ post, onTagClick }: { post: Post; onTagClick: (tag: strin
             </a>
           </h3>
         </div>
-        <div className="col-span-2 text-sm text-slate-500 dark:text-slate-400">{post.summary}</div>
+        <div className="text-sm text-slate-500 dark:text-slate-400">{post.summary}</div>
       </div>
     </article>
   );
@@ -95,7 +91,7 @@ export default function ArticlesIsland({ initialItems, tags, totalPages: initial
   return (
     <div ref={topRef}>
       {/* Tab filters */}
-      <ul className="flex flex-wrap text-sm border-b border-slate-100 dark:border-slate-800">
+      <ul className="flex flex-wrap text-sm border-b border-slate-100 dark:border-slate-800 mb-4">
         {tags.map((tag) => (
           <li key={tag} className="px-3 -mb-px">
             <a
@@ -113,7 +109,7 @@ export default function ArticlesIsland({ initialItems, tags, totalPages: initial
       </ul>
 
       {/* Articles */}
-      <div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {items.map((item) => (
           <ArticleCard key={item.id} post={item} onTagClick={handleTagClick} />
         ))}
