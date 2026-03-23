@@ -27,7 +27,10 @@ function ArticleCard({
 }) {
   const href = `/en/${post.tag}/${post.slug}`;
   return (
-    <article className="relative py-4 px-3 rounded-lg border border-slate-200 dark:border-slate-800 transition-transform duration-700 hover:duration-100 ease-in-out overflow-hidden">
+    <a
+      href={href}
+      className="relative py-4 px-3 rounded-lg border border-slate-200 dark:border-slate-800 transition-transform duration-700 hover:duration-100 ease-in-out overflow-hidden block"
+    >
       <div
         className="absolute inset-0 bg-cover bg-center opacity-100 pointer-events-none"
         style={{ backgroundImage: `url(${post.thumbnail})` }}
@@ -39,22 +42,20 @@ function ArticleCard({
       />
       <div className="relative z-10 grid grid-cols-1 gap-y-2 items-start">
         <div className="min-w-0">
-          <div className="text-xs text-slate-500 uppercase mb-1">
+          <div className="text-xs text-slate-500 dark:text-slate-400 uppercase mb-1">
             <span className="text-sky-500">&mdash;</span> {post.date} in{" "}
             <span
               className="text-sky-500 cursor-pointer hover:underline duration-150 ease-in-out"
-              onClick={() => onTagClick(post.tag)}
+              onClick={(e) => {
+                e.preventDefault();
+                onTagClick(post.tag);
+              }}
             >
               {post.tag}
             </span>
           </div>
           <h3 className="font-aspekta text-lg font-[650] mb-1">
-            <a
-              className="inline-flex relative hover:text-sky-500 duration-150 ease-out before:scale-x-0 before:origin-center before:absolute before:inset-0 before:bg-sky-200 dark:before:bg-sky-500 before:opacity-30 before:-z-10 before:translate-y-1/4 hover:before:scale-100 before:duration-150 before:ease-in-out"
-              href={href}
-            >
-              {post.title}
-            </a>
+            {post.title}
           </h3>
         </div>
         <div className="text-sm text-slate-500 dark:text-slate-400">
@@ -66,7 +67,7 @@ function ArticleCard({
           <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638l-3.96-4.158a.75.75 0 1 1 1.08-1.04l5.25 5.5a.75.75 0 0 1 0 1.04l-5.25 5.5a.75.75 0 1 1-1.08-1.04l3.96-4.158H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
         </svg>
       </div>
-    </article>
+    </a>
   );
 }
 
