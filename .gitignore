@@ -40,3 +40,4 @@ yarn-error.log*
 # posts submodule (cloned during build)
 /src/markdown/
 /.omc
+/.omx
