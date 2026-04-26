@@ -59,8 +59,8 @@ const websiteSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
-    <!-- Plausible Analytics -->
-    <script defer data-domain="tsukie.com" src="https://plausible.tsukie.com/js/script.outbound-links.tagged-events.js"></script>
+    <!-- Umami Analytics -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="b744c610-d076-4932-9880-a8bad173da20"></script>
 
     <!-- Theme: prevent flash of wrong theme -->
     <script is:inline>
