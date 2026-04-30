@@ -1,7 +1,7 @@
 ---
 const pathname = Astro.url.pathname;
 
-const isActive = (href) => {
+const isActive = (href: string) => {
   if (href === '/') return pathname === '/' || pathname.includes('/en/');
   return pathname === href || pathname === `${href}/`;
 };
@@ -78,7 +78,7 @@ const isActive = (href) => {
 </header>
 
 <script>
-  const applyTheme = (darkMode) => {
+  const applyTheme = (darkMode: boolean) => {
     document.documentElement.classList.toggle('dark', darkMode);
     localStorage.setItem('theme', darkMode ? 'dark' : 'light');
   };

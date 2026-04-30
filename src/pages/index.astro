@@ -16,9 +16,10 @@ import { TAG_LATEST } from '@/utils/constants.js';
 const PAGE_SIZE = 10;
 const pageInfo = await getPagesFromDB();
 const allItems = pageInfo.pages;
+type PageItem = (typeof allItems)[number];
 
-const separateByTags = (data) => {
-  const result = {};
+const separateByTags = (data: PageItem[]) => {
+  const result: Record<string, PageItem[]> = {};
   data.forEach((item) => {
     const tag = item.tag;
     if (!result[tag]) result[tag] = [];
