@@ -73,4 +73,10 @@ import SubscribeForm from '@/components/SubscribeForm.astro';
       </div>
     </MainContent>
   </Screen>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    window.posthog?.capture('subscribe_page_viewed');
+  });
+</script>
 </BaseLayout>

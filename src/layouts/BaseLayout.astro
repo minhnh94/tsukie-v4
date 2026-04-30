@@ -1,5 +1,6 @@
 ---
 import '@/styles/globals.css';
+import PostHog from '@/components/posthog.astro';
 
 const {
   title = 'tsukie - tech, soul, and dream',
@@ -61,6 +62,9 @@ const websiteSchema = {
 
     <!-- Umami Analytics -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b744c610-d076-4932-9880-a8bad173da20"></script>
+
+    <!-- PostHog Analytics -->
+    <PostHog />
 
     <!-- Theme: prevent flash of wrong theme -->
     <script is:inline>

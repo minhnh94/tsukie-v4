@@ -6,6 +6,7 @@ const { title, pjName, pjDesc, link, img } = Astro.props;
  href={link}
  target="_blank"
  rel="nofollow noopener noreferrer"
+ onclick={`window.posthog?.capture('sponsor_link_clicked', { project_name: '${pjName}', link: '${link}' })`}
 >
  <div class="flex items-center space-x-3 mb-1">
  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20">

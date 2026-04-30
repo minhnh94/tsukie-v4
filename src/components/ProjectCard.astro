@@ -9,6 +9,8 @@ const { pjName, pjDesc, pjImg, pjLink, bgImg } = Astro.props;
  href={pjLink}
  target="_blank"
  rel="nofollow noopener noreferrer"
+ data-project-name={pjName}
+ onclick={`window.posthog?.capture('project_clicked', { project_name: '${pjName}', project_link: '${pjLink}' })`}
 >
  {bgImg && (
  <img

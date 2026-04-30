@@ -29,3 +29,14 @@ const currentPageURL = 'https://tsukie.com' + Astro.url.pathname;
     </a>
   </li>
 </ul>
+
+<script is:inline>
+  document.querySelectorAll('[aria-label="Twitter"], [aria-label="Facebook"]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      window.posthog?.capture('article_shared', {
+        platform: el.getAttribute('aria-label').toLowerCase(),
+        url: window.location.href
+      });
+    });
+  });
+</script>
