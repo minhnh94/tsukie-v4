@@ -8,6 +8,7 @@ import { rehypeExternalLinks, rehypeLazyImages } from './src/lib/rehypeExternalL
 export default defineConfig({
   site: 'https://tsukie.com',
   output: 'static',
+  trailingSlash: 'never',
   markdown: {
     rehypePlugins: [rehypeExternalLinks, rehypeLazyImages],
   },
