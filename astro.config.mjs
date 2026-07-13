@@ -5,6 +5,20 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import { rehypeExternalLinks, rehypeLazyImages } from './src/lib/rehypeExternalLinks.js';
 
+const devOnlyRoutes = {
+  name: 'dev-only-routes',
+  hooks: {
+    'astro:config:setup': ({ command, injectRoute }) => {
+      if (command === 'dev') {
+        injectRoute({
+          pattern: '/yappie-test',
+          entrypoint: new URL('./src/dev-pages/yappie-test.astro', import.meta.url),
+        });
+      }
+    },
+  },
+};
+
 export default defineConfig({
   site: 'https://tsukie.com',
   output: 'static',
@@ -13,6 +27,7 @@ export default defineConfig({
     rehypePlugins: [rehypeExternalLinks, rehypeLazyImages],
   },
   integrations: [
+    devOnlyRoutes,
     mdx(),
     tailwind(),
     react(),

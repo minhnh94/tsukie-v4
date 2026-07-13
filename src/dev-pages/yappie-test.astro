@@ -1,0 +1,96 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Screen from '@/components/Screen.astro';
+import SideNavigation from '@/components/SideNavigation.astro';
+import MainContent from '@/components/MainContent.astro';
+import MiddleArea from '@/components/MiddleArea.astro';
+import RightSidebar from '@/components/RightSidebar.astro';
+import WidgetNewsletter from '@/components/WidgetNewsletter.astro';
+import WidgetSponsor from '@/components/WidgetSponsor.astro';
+import WidgetPosts from '@/components/WidgetPosts.astro';
+import ShareBtnRow from '@/components/ShareBtnRow.astro';
+---
+
+<BaseLayout
+  title="Yappie Test"
+  description="Local test page for the Yappie comments widget."
+  ogUrl="https://tsukie.com/yappie-test"
+  ogType="article"
+>
+  <Screen>
+    <SideNavigation />
+    <MainContent>
+      <div
+        class="grow space-y-8 pb-16 pt-12 md:flex md:space-x-8 md:space-y-0 md:pb-20 md:pt-16"
+      >
+        <MiddleArea>
+          <div class="mb-3">
+            <a
+              class="inline-flex rounded-full border border-slate-200 text-sky-500 dark:border-slate-800 dark:bg-gradient-to-t dark:from-slate-800 dark:to-slate-800/30"
+              href="/"
+            >
+              <span class="sr-only">Back</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34">
+                <path
+                  class="fill-current"
+                  d="m16.414 17 3.293 3.293-1.414 1.414L13.586 17l4.707-4.707 1.414 1.414z"
+                ></path>
+              </svg>
+            </a>
+          </div>
+
+          <article>
+            <header
+              class="relative overflow-hidden rounded-lg border border-slate-200 p-4 dark:border-slate-800"
+            >
+              <div
+                class="pointer-events-none absolute inset-0 bg-cover bg-center opacity-100"
+                style="background-image: url(/images/post-image.jpg)"
+                aria-hidden="true"
+              ></div>
+              <div
+                class="pointer-events-none absolute inset-0 bg-white/75 dark:bg-slate-900/75"
+                aria-hidden="true"
+              ></div>
+              <div class="relative z-10">
+                <div class="mb-1 flex items-center justify-between">
+                  <div class="text-xs uppercase text-slate-500">
+                    <span class="text-sky-500">&mdash;</span>
+                    Test article
+                  </div>
+                  <ShareBtnRow />
+                </div>
+                <h1 class="h1 mb-4 font-aspekta">Yappie Test</h1>
+                <p class="mb-3 italic text-gray-500 dark:text-gray-400">
+                  Test page for comment and quote previews.
+                </p>
+              </div>
+            </header>
+            <hr class="my-4 border-t border-sky-500" />
+            <div class="prose max-w-none dark:prose-invert">
+              <script
+                async
+                src="http://100.95.69.83:3000/embed/dfb6a318-b251-4d57-8660-92debd398792.js"
+              ></script>
+            </div>
+          </article>
+        </MiddleArea>
+
+        <RightSidebar>
+          <WidgetNewsletter />
+          <WidgetSponsor
+            title="My latest project"
+            pjName="WallCal"
+            img="/images/wallcal-screenshot.webp"
+            pjDesc="The best sticky calendar on desktop background for macOS"
+            link="https://wallcal.app/"
+          />
+          <div class="sticky top-6 space-y-6">
+            <WidgetPosts />
+            <WidgetPosts chronologically={true} />
+          </div>
+        </RightSidebar>
+      </div>
+    </MainContent>
+  </Screen>
+</BaseLayout>
