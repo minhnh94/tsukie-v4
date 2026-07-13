@@ -1,8 +1,7 @@
 ---
-
+const scriptSrc = import.meta.env.DEV
+  ? "http://100.95.69.83:3000/embed/dfb6a318-b251-4d57-8660-92debd398792.js"
+  : "https://yappie.tsukie.com/embed/acc67872-e03c-4dc1-a80d-844bf9dc5aad.js";
 ---
 
-<script
-  async
-  src="https://yappie.tsukie.com/embed/acc67872-e03c-4dc1-a80d-844bf9dc5aad.js"
-></script>
+<script is:inline async src={scriptSrc}></script>
