@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "updated_at": "2026-08-01T15:29:19Z",
+  "metadata": {
+    "source": "tsukie.com",
+    "docs": "https://tsukie.com/hermes-model-catalog.json"
+  },
+  "providers": {
+    "openrouter": {
+      "metadata": {
+        "display_name": "OpenRouter",
+        "note": "Curated model list for Hermes Agent's /model picker. Hermes still verifies models against OpenRouter's live catalog and tool-calling support."
+      },
+      "models": [
+        {
+          "id": "xiaomi/mimo-v2.5",
+          "description": ""
+        },
+        {
+          "id": "xiaomi/mimo-v2.5-pro",
+          "description": ""
+        },
+        {
+          "id": "deepseek/deepseek-v4-flash",
+          "description": ""
+        },
+        {
+          "id": "deepseek/deepseek-v4-pro",
+          "description": ""
+        },
+        {
+          "id": "x-ai/grok-4.5",
+          "description": ""
+        }
+      ]
+    }
+  }
+}
