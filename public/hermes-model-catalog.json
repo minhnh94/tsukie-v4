@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-02T06:55:53Z",
+  "updated_at": "2026-08-02T07:10:00Z",
   "metadata": {
     "source": "tsukie.com",
     "docs": "https://tsukie.com/hermes-model-catalog.json"
@@ -10,6 +10,34 @@
       "metadata": {
         "display_name": "OpenRouter",
         "note": "Curated model list for Hermes Agent's /model picker. Hermes still verifies models against OpenRouter's live catalog and tool-calling support."
+      },
+      "models": [
+        {
+          "id": "xiaomi/mimo-v2.5",
+          "description": ""
+        },
+        {
+          "id": "xiaomi/mimo-v2.5-pro",
+          "description": ""
+        },
+        {
+          "id": "deepseek/deepseek-v4-flash-latest",
+          "description": ""
+        },
+        {
+          "id": "deepseek/deepseek-v4-pro",
+          "description": ""
+        },
+        {
+          "id": "x-ai/grok-4.5",
+          "description": ""
+        }
+      ]
+    },
+    "llmgateway": {
+      "metadata": {
+        "display_name": "LLM Gateway",
+        "note": "Same curated model catalog as OpenRouter. llmgateway accepts OpenRouter-style provider/model ids (e.g. deepseek/deepseek-v4-flash). Hermes still verifies models against llmgateway's live catalog and tool-calling support."
       },
       "models": [
         {
