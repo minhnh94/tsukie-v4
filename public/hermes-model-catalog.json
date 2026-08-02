@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-08-01T15:29:19Z",
+  "updated_at": "2026-08-02T06:55:53Z",
   "metadata": {
     "source": "tsukie.com",
     "docs": "https://tsukie.com/hermes-model-catalog.json"
@@ -21,12 +21,8 @@
           "description": ""
         },
         {
-          "id": "deepseek/deepseek-v4-flash",
+          "id": "deepseek/deepseek-v4-flash-latest",
           "description": ""
-        },
-        {
-          "id": "deepseek/deepseek-v4-flash-0731",
-          "description": "dated snapshot of v4-flash"
         },
         {
           "id": "deepseek/deepseek-v4-pro",
