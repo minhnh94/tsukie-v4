@@ -7,6 +7,7 @@ import WidgetPosts from '@/components/WidgetPosts.astro';
     <div class="space-y-6 sticky top-6">
       <WidgetPosts />
       <WidgetPosts chronologically={true} />
+      <slot name="sticky" />
     </div>
   </div>
 </aside>
