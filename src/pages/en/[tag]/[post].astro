@@ -7,7 +7,6 @@ import MiddleArea from "@/components/MiddleArea.astro";
 import RightSidebar from "@/components/RightSidebar.astro";
 import WidgetNewsletter from "@/components/WidgetNewsletter.astro";
 import WidgetSponsor from "@/components/WidgetSponsor.astro";
-import WidgetPosts from "@/components/WidgetPosts.astro";
 import WidgetToc from "@/components/WidgetToc.astro";
 import CommentSection from "@/components/CommentSection.astro";
 import ShareBtnRow from "@/components/ShareBtnRow.astro";
@@ -145,12 +144,8 @@ const blogPostingSchema = {
             pjDesc="A lightweight comment platform to engage your readers and grow community"
             link="https://yappiely.com"
           />
-          <div class="space-y-6 sticky top-6">
-            <WidgetPosts />
-            <WidgetPosts chronologically={true} />
-            <div class="hidden md:block">
-              <WidgetToc headings={headings} />
-            </div>
+          <div class="hidden md:block sticky top-6">
+            <WidgetToc headings={headings} />
           </div>
         </RightSidebar>
       </div>
