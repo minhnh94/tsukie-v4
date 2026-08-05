@@ -4,7 +4,9 @@ import WidgetPosts from '@/components/WidgetPosts.astro';
 <aside class="md:w-[240px] lg:w-[300px] shrink-0">
   <div class="space-y-4 h-full">
     <slot />
-    <WidgetPosts />
-    <WidgetPosts chronologically={true} />
+    <div class="space-y-6 sticky top-6">
+      <WidgetPosts />
+      <WidgetPosts chronologically={true} />
+    </div>
   </div>
 </aside>
