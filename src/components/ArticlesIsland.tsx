@@ -29,7 +29,7 @@ function ArticleCard({
   return (
     <a
       href={href}
-      className="relative py-4 px-3 rounded-lg border border-border transition-transform duration-700 hover:duration-100 ease-in-out overflow-hidden block"
+      className="relative py-4 px-3 zb-card bg-card transition-transform duration-700 hover:duration-100 ease-in-out block"
     >
       <div
         className="absolute inset-0 bg-cover bg-center opacity-100 pointer-events-none"
@@ -58,7 +58,7 @@ function ArticleCard({
             {post.title}
           </h3>
         </div>
-        <div className="text-sm text-muted-foreground">
+        <div className="text-sm text-muted-foreground pb-6">
           {post.summary}
         </div>
       </div>

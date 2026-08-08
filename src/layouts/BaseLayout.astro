@@ -63,6 +63,8 @@ const websiteSchema = {
     <PostHog />
   </head>
   <body class="font-sans antialiased bg-background text-foreground tracking-tight">
-    <slot />
+    <div class="relative z-10 min-h-[100dvh]">
+      <slot />
+    </div>
   </body>
 </html>
