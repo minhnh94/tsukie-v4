@@ -1,8 +1,7 @@
 ---
 import WidgetPosts from '@/components/WidgetPosts.astro';
-const { topPad = false } = Astro.props;
 ---
-<aside class:list={["md:w-[260px] lg:w-[300px] shrink-0 self-stretch", topPad && "pt-[88px]"]}>
+<aside class="md:w-[260px] lg:w-[300px] shrink-0 self-stretch md:pt-[94px]">
   <div class="h-full flex flex-col space-y-6">
     <slot />
     <div class="space-y-6 sticky top-6">

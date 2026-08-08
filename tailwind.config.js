@@ -29,7 +29,7 @@ module.exports = {
         border: 'rgba(255, 255, 255, 0.1)',
         input: 'rgba(255, 255, 255, 0.15)',
         ring: '#737373',
-        'strong-accent': '#ff543a',
+        'strong-accent': '#22c55e',
       },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1.5' }],

@@ -29,15 +29,11 @@ function ArticleCard({
   return (
     <a
       href={href}
-      className="relative py-4 px-3 zb-card bg-card transition-transform duration-700 hover:duration-100 ease-in-out block"
+      className="group relative py-4 px-3 zb-card bg-card transition-transform duration-700 hover:duration-100 ease-in-out block"
     >
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-100 pointer-events-none"
+        className="absolute inset-0 bg-cover bg-center opacity-10 pointer-events-none"
         style={{ backgroundImage: `url(${post.thumbnail})` }}
-        aria-hidden="true"
-      />
-      <div
-        className="absolute inset-0 bg-background/75 pointer-events-none"
         aria-hidden="true"
       />
       <div className="relative z-10 grid grid-cols-1 gap-y-2 items-start">
@@ -54,7 +50,7 @@ function ArticleCard({
               {post.tag}
             </span>
           </div>
-          <h3 className="font-aspekta text-lg font-[650] mb-1">
+          <h3 className="isolate relative inline-block font-aspekta text-lg font-[650] mb-1 group-hover:text-strong-accent duration-150 ease-in-out before:absolute before:inset-0 before:bg-strong-accent/60 before:opacity-60 before:-z-10 before:-translate-y-1 before:-skew-y-3 before:scale-x-0 before:origin-center group-hover:before:scale-x-100 before:duration-150 before:ease-in-out">
             {post.title}
           </h3>
         </div>

@@ -3,7 +3,7 @@ const { pjName, pjDesc, pjImg, pjLink, bgImg } = Astro.props;
 ---
 <a
  class:list={[
- 'zb-card transition-transform duration-700 hover:duration-100 ease-in-out p-4 overflow-hidden block',
+ 'group zb-card transition-transform duration-700 hover:duration-100 ease-in-out p-4 overflow-hidden block',
  !bgImg && 'bg-card',
  bgImg && 'bg-secondary',
  ]}
@@ -38,7 +38,7 @@ const { pjName, pjDesc, pjImg, pjLink, bgImg } = Astro.props;
  </svg>
  </div>
  )}
- <div class:list={['text-lg font-aspekta font-[650] mb-1', bgImg && 'text-white']}>{pjName}</div>
+ <div class:list={['isolate relative inline-block text-lg font-aspekta font-[650] mb-1 group-hover:text-strong-accent duration-150 ease-in-out before:absolute before:inset-0 before:bg-strong-accent/60 before:opacity-60 before:-z-10 before:-translate-y-1 before:-skew-y-3 before:scale-x-0 before:origin-center group-hover:before:scale-x-100 before:duration-150 before:ease-in-out', bgImg && 'text-white']}>{pjName}</div>
  <p class:list={['text-sm mb-1', bgImg ? 'text-white' : 'text-muted-foreground']}>{pjDesc}</p>
  </div>
  <div class="text-strong-accent flex justify-end">
