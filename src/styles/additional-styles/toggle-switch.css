@@ -19,7 +19,7 @@
 }
 
 .form-switch input[type="checkbox"]:checked+label {
-    @apply bg-sky-500;
+    @apply bg-strong-accent;
 }
 
 .form-switch input[type="checkbox"]:checked+label>span:first-child {
@@ -27,9 +27,9 @@
 }
 
 .form-switch input[type="checkbox"]:disabled+label {
-    @apply cursor-not-allowed bg-slate-100 border border-slate-200;
+    @apply cursor-not-allowed bg-muted border border-border;
 }
 
 .form-switch input[type="checkbox"]:disabled+label>span:first-child {
-    @apply bg-slate-400;
+    @apply bg-muted;
 }

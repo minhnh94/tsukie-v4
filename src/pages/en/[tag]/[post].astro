@@ -80,7 +80,7 @@ const blogPostingSchema = {
           <!-- Back -->
           <div class="mb-3">
             <a
-              class="inline-flex text-sky-500 rounded-full border border-slate-200 dark:border-slate-800 dark:bg-gradient-to-t dark:from-slate-800 dark:to-slate-800/30"
+              class="inline-flex text-strong-accent rounded-full border border-border "
               href="/"
             >
               <span class="sr-only">Back</span>
@@ -95,32 +95,32 @@ const blogPostingSchema = {
 
           <article>
             <!-- Post header -->
-            <header class="relative rounded-lg border border-slate-200 dark:border-slate-800 overflow-hidden p-4">
+            <header class="relative rounded-lg border border-border overflow-hidden p-4">
               <div
                 class="absolute inset-0 bg-cover bg-center opacity-100 pointer-events-none"
                 style={`background-image: url(${pageProperties.thumbnail})`}
                 aria-hidden="true"
               ></div>
-              <div class="absolute inset-0 bg-white/75 dark:bg-slate-900/75 pointer-events-none" aria-hidden="true"></div>
+              <div class="absolute inset-0 bg-background/75 pointer-events-none" aria-hidden="true"></div>
               <div class="relative z-10">
                 <div class="flex items-center justify-between mb-1">
-                  <div class="text-xs text-slate-500 uppercase">
-                    <span class="text-sky-500">&mdash;</span>
+                  <div class="text-xs text-muted-foreground uppercase">
+                    <span class="text-strong-accent">&mdash;</span>
                     {pageProperties.date}
                   </div>
                   <ShareBtnRow />
                 </div>
                 <h1 class="h1 font-aspekta mb-4">{pageProperties.title}</h1>
-                <p class="mb-3 text-gray-500 dark:text-gray-400 italic">
+                <p class="mb-3 text-muted-foreground italic">
                   {pageProperties.summary}
                 </p>
               </div>
             </header>
-            <hr class="my-4 border-t border-sky-500" />
+            <hr class="my-4 border-t border-strong-accent" />
             <div class="block md:hidden">
               <WidgetToc headings={headings} />
             </div>
-            <div class="prose dark:prose-invert max-w-none">
+            <div class="prose  max-w-none">
               <Content />
             </div>
           </article>

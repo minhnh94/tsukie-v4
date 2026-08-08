@@ -29,18 +29,18 @@
     }
 }
 
-/* Buttons */
+/* Buttons - zerobyte style: uppercase, small, bordered, rounded-sm */
 .btn,
 .btn-sm {
-    @apply font-aspekta text-sm font-medium inline-flex items-center justify-center rounded-full leading-5 whitespace-nowrap transition duration-150 ease-in-out;
+    @apply font-sans uppercase rounded-sm text-xs font-semibold tracking-wide inline-flex items-center justify-center gap-2 whitespace-nowrap border border-border transition-all duration-150 ease-in-out active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
 }
 
 .btn {
-    @apply px-4 py-2;
+    @apply h-9 px-5;
 }
 
 .btn-sm {
-    @apply px-3 py-1.5;
+    @apply h-9 px-5;
 }
 
 .form-input,
@@ -49,19 +49,14 @@
 .form-select,
 .form-checkbox,
 .form-radio {
-    @apply bg-slate-100 border border-slate-100 focus:border-sky-500 dark:bg-slate-700 dark:border-slate-700 dark:focus:border-sky-500;
+    @apply border border-input bg-background focus:border-strong-accent;
 }
 
 .form-input,
 .form-textarea,
 .form-multiselect,
 .form-select {
-    @apply text-sm px-3 rounded-full;
-}
-
-.form-input,
-.form-textarea {
-    @apply placeholder-slate-400 dark:placeholder-slate-500;
+    @apply w-full h-9 rounded-md px-3 py-1 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/50;
 }
 
 .form-select {
@@ -70,5 +65,5 @@
 
 .form-checkbox,
 .form-radio {
-    @apply text-sky-500 border-2 rounded-sm;
+    @apply text-strong-accent border-2 rounded-sm;
 }

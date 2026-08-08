@@ -6,9 +6,30 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
-        aspekta: ['Aspekta', 'sans-serif'],
-        'pt-mono': ['PT Mono', 'monospace'],
+        sans: ['"Google Sans Code"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        inter: ['"Google Sans Code"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        aspekta: ['"Google Sans Code"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'pt-mono': ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+      },
+      colors: {
+        background: '#131313',
+        foreground: '#fafafa',
+        card: '#131313',
+        'card-header': '#1b1b1b',
+        primary: '#e5e5e5',
+        'primary-foreground': '#171717',
+        secondary: '#0a0a0a',
+        muted: '#262626',
+        'muted-foreground': '#a1a1a1',
+        accent: '#262626',
+        'accent-foreground': '#fafafa',
+        destructive: '#ff543a',
+        'destructive-foreground': '#fff',
+        success: '#4ade80',
+        border: 'rgba(255, 255, 255, 0.1)',
+        input: 'rgba(255, 255, 255, 0.15)',
+        ring: '#737373',
+        'strong-accent': '#ff543a',
       },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1.5' }],
@@ -34,7 +55,7 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: theme('colors.slate.500'),
+            color: theme('colors.muted-foreground'),
             lineHeight: '1.5',
             maxWidth: 'none',
             // Headings
@@ -44,7 +65,7 @@ module.exports = {
               fontSize: theme('fontSize.3xl[0]'),
               lineHeight: theme('fontSize.3xl[1].lineHeight'),
               letterSpacing: theme('fontSize.3xl[1].letterSpacing'),
-              color: theme('colors.slate.800'),
+              color: theme('colors.foreground'),
               marginTop: '0', marginBottom: '0',
             },
             h2: {
@@ -53,7 +74,7 @@ module.exports = {
               fontSize: theme('fontSize.2xl[0]'),
               lineHeight: theme('fontSize.2xl[1].lineHeight'),
               letterSpacing: theme('fontSize.2xl[1].letterSpacing'),
-              color: theme('colors.slate.800'),
+              color: theme('colors.foreground'),
               marginTop: '0', marginBottom: '0',
             },
             h3: {
@@ -62,7 +83,7 @@ module.exports = {
               fontSize: theme('fontSize.xl[0]'),
               lineHeight: theme('fontSize.xl[1].lineHeight'),
               letterSpacing: theme('fontSize.xl[1].letterSpacing'),
-              color: theme('colors.slate.800'),
+              color: theme('colors.foreground'),
               marginTop: '0', marginBottom: '0',
             },
             h4: {
@@ -71,17 +92,17 @@ module.exports = {
               fontSize: theme('fontSize.lg[0]'),
               lineHeight: theme('fontSize.lg[1].lineHeight'),
               letterSpacing: theme('fontSize.lg[1].letterSpacing'),
-              color: theme('colors.slate.800'),
+              color: theme('colors.foreground'),
               marginTop: '0', marginBottom: '0',
             },
             // Text
-            'p strong': { fontWeight: '500', color: theme('colors.slate.800') },
-            strong: { fontWeight: '500', color: theme('colors.slate.800') },
+            'p strong': { fontWeight: '500', color: theme('colors.foreground') },
+            strong: { fontWeight: '500', color: theme('colors.foreground') },
             p: { marginTop: '0', marginBottom: '0' },
             // Blockquote
             blockquote: {
               fontStyle: 'italic', paddingLeft: theme('spacing.4'),
-              borderLeftWidth: '2px', borderLeftColor: theme('colors.teal.500'),
+              borderLeftWidth: '2px', borderLeftColor: theme('colors.strong-accent'),
               marginBottom: theme('spacing.8'), marginTop: '0', quotes: 'none',
             },
             'blockquote p:first-of-type::before': { content: 'none' },
@@ -92,26 +113,26 @@ module.exports = {
             li: { marginTop: theme('spacing.2'), marginBottom: '0', paddingLeft: '0' },
             'li p': { display: 'inline', margin: '0' },
             // Links
-            a: { fontWeight: '500', color: theme('colors.sky.500'), textDecoration: 'none', '&:hover': { textDecoration: 'underline' } },
+            a: { fontWeight: '500', color: theme('colors.strong-accent'), textDecoration: 'none', '&:hover': { textDecoration: 'underline' } },
             // Media
             figure: { marginBottom: theme('spacing.8'), marginTop: '0' },
             img: { width: '100%', marginTop: '0', marginBottom: '0' },
-            figcaption: { fontSize: theme('fontSize.sm[0]'), textAlign: 'center', color: theme('colors.gray.400'), marginTop: theme('spacing.3'), fontStyle: 'italic' },
+            figcaption: { fontSize: theme('fontSize.sm[0]'), textAlign: 'center', color: theme('colors.muted-foreground'), marginTop: theme('spacing.3'), fontStyle: 'italic' },
             // Code
-            pre: { overflowX: 'auto', fontSize: theme('fontSize.sm[0]'), color: theme('colors.slate.500'), backgroundColor: theme('colors.slate.800'), padding: theme('spacing.4'), borderRadius: theme('borderRadius.DEFAULT'), lineHeight: theme('lineHeight.tight'), marginTop: '0', marginBottom: '0' },
+            pre: { overflowX: 'auto', fontSize: theme('fontSize.sm[0]'), color: theme('colors.muted-foreground'), backgroundColor: theme('colors.secondary'), padding: theme('spacing.4'), borderRadius: theme('borderRadius.md'), lineHeight: theme('lineHeight.tight'), marginTop: '0', marginBottom: '0' },
             code: { fontFamily: 'inherit', fontWeight: 'inherit', fontSize: 'inherit', lineHeight: 'inherit' },
             'pre code': { fontFamily: theme('fontFamily.pt-mono').join(', ') },
             'code::before': { content: 'none' },
             'code::after': { content: 'none' },
-            'p > code': { color: theme('colors.sky.300') },
-            'h3 > code': { color: theme('colors.sky.300') },
-            'li > code': { color: theme('colors.sky.300') },
+            'p > code': { color: theme('colors.strong-accent') },
+            'h3 > code': { color: theme('colors.strong-accent') },
+            'li > code': { color: theme('colors.strong-accent') },
             // Tables
             table: { width: '100%', fontSize: theme('fontSize.sm[0]') },
-            thead: { borderBottomColor: theme('colors.slate.300') },
-            'thead th': { color: theme('colors.slate.800'), fontWeight: '600', paddingBottom: theme('spacing.2') },
+            thead: { borderBottomColor: theme('colors.border') },
+            'thead th': { color: theme('colors.foreground'), fontWeight: '600', paddingBottom: theme('spacing.2') },
             'tbody td': { paddingTop: theme('spacing.2'), paddingBottom: theme('spacing.2') },
-            'tbody tr': { borderBottomColor: theme('colors.slate.200') },
+            'tbody tr': { borderBottomColor: theme('colors.border') },
             // Misc
             hr: { marginTop: '0', marginBottom: '0' },
             // Spacing: replicate space-y-4 behavior

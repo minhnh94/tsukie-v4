@@ -29,7 +29,7 @@ function ArticleCard({
   return (
     <a
       href={href}
-      className="relative py-4 px-3 rounded-lg border border-slate-200 dark:border-slate-800 transition-transform duration-700 hover:duration-100 ease-in-out overflow-hidden block"
+      className="relative py-4 px-3 rounded-lg border border-border transition-transform duration-700 hover:duration-100 ease-in-out overflow-hidden block"
     >
       <div
         className="absolute inset-0 bg-cover bg-center opacity-100 pointer-events-none"
@@ -37,15 +37,15 @@ function ArticleCard({
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-white/75 dark:bg-slate-900/75 pointer-events-none"
+        className="absolute inset-0 bg-background/75 pointer-events-none"
         aria-hidden="true"
       />
       <div className="relative z-10 grid grid-cols-1 gap-y-2 items-start">
         <div className="min-w-0">
-          <div className="text-xs text-slate-500 dark:text-slate-400 uppercase mb-1">
-            <span className="text-sky-500">&mdash;</span> {post.date} in{" "}
+          <div className="text-xs text-muted-foreground uppercase mb-1">
+            <span className="text-strong-accent">&mdash;</span> {post.date} in{" "}
             <span
-              className="text-sky-500 cursor-pointer hover:underline duration-150 ease-in-out"
+              className="text-strong-accent cursor-pointer hover:underline duration-150 ease-in-out"
               onClick={(e) => {
                 e.preventDefault();
                 onTagClick(post.tag);
@@ -58,11 +58,11 @@ function ArticleCard({
             {post.title}
           </h3>
         </div>
-        <div className="text-sm text-slate-500 dark:text-slate-400">
+        <div className="text-sm text-muted-foreground">
           {post.summary}
         </div>
       </div>
-      <div className="absolute bottom-3 right-3 z-10 text-sky-500">
+      <div className="absolute bottom-3 right-3 z-10 text-strong-accent">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
           <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638l-3.96-4.158a.75.75 0 1 1 1.08-1.04l5.25 5.5a.75.75 0 0 1 0 1.04l-5.25 5.5a.75.75 0 1 1-1.08-1.04l3.96-4.158H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
         </svg>
@@ -118,14 +118,14 @@ export default function ArticlesIsland({
   return (
     <div ref={topRef}>
       {/* Tab filters */}
-      <ul className="flex flex-wrap text-sm border-b border-slate-100 dark:border-slate-800 mb-3">
+      <ul className="flex flex-wrap text-sm border-b border-border mb-3">
         {tags.map((tag) => (
           <li key={tag} className="px-2 -mb-px">
             <a
               className={`block py-2 capitalize cursor-pointer ${
                 activeTag === tag
-                  ? "font-medium text-slate-800 dark:text-slate-100 border-b-2 border-sky-500"
-                  : "text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
+                  ? "font-medium text-foreground border-b-2 border-strong-accent"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
               onClick={() => handleTagClick(tag)}
             >
@@ -147,18 +147,18 @@ export default function ArticlesIsland({
         <div className="flex justify-center items-center gap-4 pt-6">
           {currentPage > 1 && (
             <a
-              className="text-sky-500 hover:text-sky-400 cursor-pointer"
+              className="text-strong-accent hover:text-strong-accent/80 cursor-pointer"
               onClick={() => fetchPage(activeTag, currentPage - 1, true)}
             >
               &lt; back
             </a>
           )}
-          <span className="text-slate-500 text-sm">
+          <span className="text-muted-foreground text-sm">
             Page {currentPage} of {totalPages}
           </span>
           {currentPage < totalPages && (
             <a
-              className="text-sky-500 hover:text-sky-400 cursor-pointer"
+              className="text-strong-accent hover:text-strong-accent/80 cursor-pointer"
               onClick={() => fetchPage(activeTag, currentPage + 1, true)}
             >
               next &gt;

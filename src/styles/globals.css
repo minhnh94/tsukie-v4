@@ -7,7 +7,6 @@
 @import "tailwindcss/utilities";
 @import "additional-styles/utility-patterns.css";
 
-@import "additional-styles/custom-fonts.css";
 @import "additional-styles/range-slider.css";
 @import "additional-styles/toggle-switch.css";
 @import "additional-styles/theme.css";
@@ -16,6 +15,11 @@
 @layer base {
 	html {
 		scroll-behavior: smooth;
+		color-scheme: dark;
+	}
+
+	body {
+		scrollbar-width: thin;
 	}
 }
 
@@ -23,4 +27,35 @@
 	.rtl {
 		direction: rtl;
 	}
+}
+
+/* Zerobyte dither background treatment (copied wholesale from zerobyte) */
+.dither-lg {
+	--dither-gray: 1;
+	--dither-contrast: 120;
+	--dither-bright: 1;
+	--dither-blur: 0px;
+	--dither-cell: 20px;
+	--dither-opacity: 1;
+	--dither-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAu0lEQVQ4T6WSMQqFMBBEE2wDXiVgG8gtglilCuIpcoogVqlEPIVgK3gVIa2Qzw9YbIpttlqGgbcMM5wxlr33LMbI/nccx3I/PQwD0LXPj+OgAaSUBWCtLZ+2bSv308uyAF37/HkeGkAIASL0fQ8yT9MEdO3z67poAKUUiDDPM8i87zvQtc/f96UBmqZBazTG4Ds4z5MG6LoOrTGEgO8gpUQDtG2L1uicw3);
+	isolation: isolate;
+	z-index: 0;
+	filter: grayscale(var(--dither-gray)) brightness(var(--dither-bright)) blur(var(--dither-blur)) contrast(var(--dither-contrast));
+	background-color: #000;
+	overflow: hidden;
+}
+
+.dither-lg:after {
+	content: "";
+	pointer-events: none;
+	z-index: 1;
+	background-image: var(--dither-image);
+	background-repeat: repeat;
+	background-size: var(--dither-cell) var(--dither-cell);
+	image-rendering: pixelated;
+	opacity: var(--dither-opacity);
+	mix-blend-mode: screen;
+	background-position: 0 0;
+	position: absolute;
+	inset: 0;
 }

@@ -2,7 +2,7 @@
 .form-textarea:focus,
 .form-multiselect:focus,
 .form-select:focus {
-  @apply focus:ring-2 focus:ring-sky-200 dark:focus:ring-0;
+  @apply focus:ring-2 focus:ring-strong-accent/30;
 }
 
 .form-checkbox:focus,

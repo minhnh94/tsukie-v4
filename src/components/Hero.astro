@@ -8,7 +8,10 @@ import Highlight from "@/components/Highlight.astro";
     style="background-image: url(/images/about.jpg)"
     aria-hidden="true"
   ></div>
-  <div class="absolute inset-0 bg-white/75 dark:bg-slate-900/75 pointer-events-none" aria-hidden="true"></div>
+  <div
+    class="absolute inset-0 bg-background md:bg-transparent md:bg-[linear-gradient(to_right,#131313_0%,#131313_55%,rgba(19,19,19,0.55)_78%,rgba(19,19,19,0.25)_100%)] pointer-events-none"
+    aria-hidden="true"
+  ></div>
   <div class="relative z-10 max-w-[700px]">
     <div class="px-4 pt-8 pb-10">
       <img
@@ -23,8 +26,8 @@ import Highlight from "@/components/Highlight.astro";
           >Dream</Highlight
         > Chaser
       </h1>
-      <p class="text-lg text-slate-500 dark:text-slate-400">
-        Welcome to <span class="font-medium text-sky-500">tsukie.com</span> — my corner
+      <p class="text-lg text-muted-foreground">
+        Welcome to <span class="font-medium text-strong-accent">tsukie.com</span> — my corner
         of the internet.<br /> I write about shipping code, learning life the hard
         way, and trying (sometimes failing) to build something that matters.<br
         /> Yeah, I use AI to polish. So does everyone.<br /> But the stories, the

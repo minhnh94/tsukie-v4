@@ -8,18 +8,18 @@ const isActive = (href: string) => {
 ---
 <header>
   <nav
-    class="md:hidden fixed bottom-0 inset-x-0 z-50 border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur"
+    class="md:hidden fixed bottom-0 inset-x-0 z-50 border-t border-border bg-background/95 backdrop-blur"
     aria-label="Mobile bottom navigation"
   >
-    <ul class="grid grid-cols-4">
+    <ul class="grid grid-cols-3">
       <li>
         <a
           href="/"
           class:list={[
             'h-16 flex flex-col items-center justify-center gap-1 text-xs font-medium transition-colors',
             isActive('/')
-              ? 'text-sky-500'
-              : 'text-slate-500 dark:text-slate-400',
+              ? 'text-strong-accent'
+              : 'text-muted-foreground',
           ]}
         >
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -34,8 +34,8 @@ const isActive = (href: string) => {
           class:list={[
             'h-16 flex flex-col items-center justify-center gap-1 text-xs font-medium transition-colors',
             isActive('/about')
-              ? 'text-sky-500'
-              : 'text-slate-500 dark:text-slate-400',
+              ? 'text-strong-accent'
+              : 'text-muted-foreground',
           ]}
         >
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -50,8 +50,8 @@ const isActive = (href: string) => {
           class:list={[
             'h-16 flex flex-col items-center justify-center gap-1 text-xs font-medium transition-colors',
             isActive('/subscribe')
-              ? 'text-sky-500'
-              : 'text-slate-500 dark:text-slate-400',
+              ? 'text-strong-accent'
+              : 'text-muted-foreground',
           ]}
         >
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -60,34 +60,6 @@ const isActive = (href: string) => {
           Subscribe
         </a>
       </li>
-      <li>
-        <button
-          id="theme-toggle-mobile"
-          type="button"
-          class="w-full h-16 flex flex-col items-center justify-center gap-1 text-xs font-medium text-slate-500 dark:text-slate-400 transition-colors"
-          aria-label="Toggle dark mode"
-        >
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 1 0 21.752 15.002Z"/>
-          </svg>
-          Theme
-        </button>
-      </li>
     </ul>
   </nav>
 </header>
-
-<script>
-  const applyTheme = (darkMode: boolean) => {
-    document.documentElement.classList.toggle('dark', darkMode);
-    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
-  };
-
-  const toggleTheme = () => {
-    const isDark = document.documentElement.classList.contains('dark');
-    applyTheme(!isDark);
-  };
-
-  document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
-  document.getElementById('theme-toggle-desktop')?.addEventListener('click', toggleTheme);
-</script>
