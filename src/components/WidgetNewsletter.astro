@@ -5,8 +5,7 @@
  <h3 class="font-aspekta font-[650] mb-1">Discover the coder's life balance!</h3>
  <p class="text-sm text-muted-foreground">Subscribe for insights on coding, life experiences, and my indie journey.</p>
  </div>
- <form method="post" action="https://listmonk.tsukie.com/subscription/form" id="subscribe-form-widget">
- <input type="hidden" name="nonce" />
+ <form method="post" action="/api/subscribe" id="subscribe-form-widget">
  <div class="mb-2">
  <label class="sr-only" for="newsletter">Your email…</label>
  <input
@@ -18,15 +17,9 @@
  required
  />
  </div>
- <input type="checkbox" id="18871" name="l" value="18871bcb-292b-451c-b3a3-126779440e75" checked class="hidden" />
+ <input name="website" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
  <button class="btn-sm w-full border-transparent bg-primary text-primary-foreground hover:bg-primary/90" type="submit">
  Subscribe
  </button>
  </form>
 </div>
-
-<script is:inline>
-  document.getElementById('subscribe-form-widget')?.addEventListener('submit', function() {
-    window.posthog?.capture('newsletter_subscribed', { source: 'sidebar_widget' });
-  });
-</script>

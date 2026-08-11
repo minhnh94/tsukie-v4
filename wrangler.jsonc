@@ -1,8 +1,15 @@
 {
   "name": "tsukie-v4",
+  "main": "worker.ts",
   "compatibility_date": "2026-02-20",
+  "routes": [
+    { "pattern": "tsukie.com/*", "zone_name": "tsukie.com" },
+    { "pattern": "www.tsukie.com/*", "zone_name": "tsukie.com" }
+  ],
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"],
     "html_handling": "drop-trailing-slash"
   }
 }
