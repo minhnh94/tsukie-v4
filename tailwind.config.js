@@ -149,7 +149,7 @@ module.exports = {
             h4: { color: theme('colors.slate.100') },
             'p strong': { color: theme('colors.slate.100') },
             strong: { color: theme('colors.slate.100') },
-            blockquote: { color: theme('colors.slate.600'), borderLeftColor: theme('colors.gray.400') },
+            blockquote: { borderLeftColor: theme('colors.gray.400') },
             thead: { borderBottomColor: theme('colors.slate.600') },
             'thead th': { color: theme('colors.slate.100') },
             'tbody tr': { borderBottomColor: theme('colors.slate.700') },
