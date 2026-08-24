@@ -1,7 +1,8 @@
 ---
 ---
-<form method="post" action="/api/subscribe" id="subscribe-form-main">
+<form method="post" action="https://listmonk.tsukie.com/subscription/form" id="subscribe-form-main">
   <div class="flex flex-col md:flex-row justify-center max-w-xs mx-auto md:max-w-md md:mx-0">
+    <input type="hidden" name="nonce" />
     <input
       name="email"
       type="email"
@@ -10,7 +11,7 @@
       aria-label="Your email…"
       required
     />
-    <input name="website" type="text" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+    <input type="checkbox" id="18871" name="l" value="18871bcb-292b-451c-b3a3-126779440e75" checked class="hidden" />
     <button class="btn border-transparent bg-primary text-primary-foreground hover:bg-primary/90" type="submit">
       Subscribe
     </button>
@@ -18,22 +19,7 @@
 </form>
 
 <script is:inline>
-  const result = new URLSearchParams(window.location.search).get('subscription');
-  const form = document.getElementById('subscribe-form-main');
-  const message = document.getElementById('subscription-result');
-
-  if (result === 'pending' && form && message) {
-    form.hidden = true;
-    message.textContent = 'Check your inbox to confirm your subscription.';
-    message.classList.remove('hidden');
-    window.posthog?.capture('newsletter_subscription_requested', { source: 'subscribe_page' });
-  } else if (result === 'confirmed' && form && message) {
-    form.hidden = true;
-    message.textContent = "You're subscribed. Welcome aboard.";
-    message.classList.remove('hidden');
+  document.getElementById('subscribe-form-main')?.addEventListener('submit', function() {
     window.posthog?.capture('newsletter_subscribed', { source: 'subscribe_page' });
-  } else if (result === 'error' && message) {
-    message.textContent = 'Subscription failed. Please try again.';
-    message.classList.remove('hidden');
-  }
+  });
 </script>
