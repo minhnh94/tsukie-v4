@@ -97,7 +97,7 @@ import SubscribeForm from '@/components/SubscribeForm.astro';
     if (!message) return;
 
     if (result === 'pending') {
-      message.textContent = 'Check your inbox to confirm your subscription.';
+      message.textContent = 'Check your inbox to confirm your subscription. If you do not see it, check your spam folder too.';
       document.getElementById('subscribe-form-main')?.setAttribute('hidden', '');
     } else if (result === 'invalid-domain') {
       message.textContent = 'That email domain cannot receive email. Check the address and try again.';
