@@ -1,12 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { handleRequest } from "./worker.mjs";
+import { handleRequest, onRequest } from "./functions/api/subscribe.js";
 
 const LIST_UUID = "18871bcb-292b-451c-b3a3-126779440e75";
-const env = {
-  ASSETS: { fetch: async () => new Response("asset") },
-};
 
 function dns(body) {
   return Response.json(body);
@@ -50,7 +47,7 @@ async function submit(records, options = {}) {
     return new Response(null, { status: options.listmonkStatus ?? 200 });
   };
 
-  const response = await handleRequest(request(options.fields), env, fetcher);
+  const response = await handleRequest(request(options.fields), fetcher);
   return { response, dnsCalls, listmonkCalls };
 }
 
@@ -61,6 +58,15 @@ function assertResult(response, expected) {
     expected,
   );
 }
+
+test("Pages Function rejects non-POST requests", async () => {
+  const response = await onRequest({
+    request: new Request("https://tsukie.com/api/subscribe"),
+  });
+
+  assert.equal(response.status, 405);
+  assert.equal(response.headers.get("allow"), "POST");
+});
 
 test("normal MX forwards normalized signup to Listmonk", async () => {
   const result = await submit({
@@ -139,7 +145,7 @@ test("resolver timeout aborts request and blocks Listmonk", async (context) => {
     started = resolve;
   });
   let listmonkCalls = 0;
-  const responsePromise = handleRequest(request(), env, (input, init) => {
+  const responsePromise = handleRequest(request(), (input, init) => {
     if (new URL(input).hostname === "cloudflare-dns.com") {
       return rejectWhenAborted(init.signal, started);
     }
@@ -191,7 +197,7 @@ test("Listmonk timeout aborts request and returns controlled error", async (cont
   const requestStarted = new Promise((resolve) => {
     started = resolve;
   });
-  const responsePromise = handleRequest(request(), env, (input, init) => {
+  const responsePromise = handleRequest(request(), (input, init) => {
     if (new URL(input).hostname === "cloudflare-dns.com") {
       return Promise.resolve(
         dns({
@@ -215,7 +221,6 @@ test("filled honeypot silently succeeds without external requests", async () => 
   let calls = 0;
   const response = await handleRequest(
     request({ nonce: "bot" }),
-    env,
     async () => {
       calls += 1;
       return new Response();
