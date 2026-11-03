@@ -12,7 +12,7 @@ const pathname = Astro.url.pathname;
           href="/"
           class:list={[
             'w-full h-6 flex items-center justify-center relative after:absolute after:w-0.5 after:right-0 after:top-0 after:bottom-0',
-            (pathname === '/' || pathname.includes('/en/'))
+            pathname === '/'
               ? 'text-strong-accent after:bg-strong-accent'
               : 'text-muted-foreground hover:text-foreground',
           ]}
@@ -26,18 +26,18 @@ const pathname = Astro.url.pathname;
       </li>
       <li class="py-2">
         <a
-          href="/about"
+          href="/blog"
           class:list={[
             'w-full h-6 flex items-center justify-center relative after:absolute after:w-0.5 after:right-0 after:top-0 after:bottom-0',
-            pathname === '/about' || pathname === '/about/'
+            pathname === '/blog' || pathname === '/blog/' || pathname.includes('/en/')
               ? 'text-strong-accent after:bg-strong-accent'
               : 'text-muted-foreground hover:text-foreground',
           ]}
         >
-          <span class="sr-only">About</span>
+          <span class="sr-only">Blog</span>
           <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-            <path fill-opacity=".16" d="M10 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8Z" />
-            <path d="M9 5h2v2H9V5Zm0 4h2v6H9V9Zm1-9C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0Zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8Z" />
+            <path fill-opacity=".16" d="M4 2h9l3 3v13H4z" />
+            <path d="M3 1h10.4L17 4.6V19H3V1Zm2 2v14h10V5.4L12.6 3H5Zm2 5h6v2H7V8Zm0 4h6v2H7v-2Z" />
           </svg>
         </a>
       </li>

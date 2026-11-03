@@ -2,7 +2,8 @@
 const pathname = Astro.url.pathname;
 
 const isActive = (href: string) => {
-  if (href === '/') return pathname === '/' || pathname.includes('/en/');
+  if (href === '/') return pathname === '/';
+  if (href === '/blog' && pathname.includes('/en/')) return true;
   return pathname === href || pathname === `${href}/`;
 };
 ---
@@ -30,18 +31,18 @@ const isActive = (href: string) => {
       </li>
       <li>
         <a
-          href="/about"
+          href="/blog"
           class:list={[
             'h-16 flex flex-col items-center justify-center gap-1 text-xs font-medium transition-colors',
-            isActive('/about')
+            isActive('/blog')
               ? 'text-strong-accent'
               : 'text-muted-foreground',
           ]}
         >
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 3h8.5L19 7.5V21H6V3Zm3 7h6m-6 4h6"/>
           </svg>
-          About
+          Blog
         </a>
       </li>
       <li>

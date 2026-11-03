@@ -2,32 +2,28 @@
 import ProjectCard from '@/components/ProjectCard.astro';
 ---
 <section>
-  <h2 class="font-aspekta text-xl font-[650] mb-4">Projects</h2>
-  <div class="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
+  <h2 class="font-aspekta text-xl font-[650] mb-4">Portfolio</h2>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
     <ProjectCard
       pjName="WallCal"
-      pjDesc="The best sticky calendar on desktop background for macOS"
+      pjDesc="Calendar on your macOS desktop. 100k+ downloads, 4k+ monthly users, $10k+ first-year revenue."
       pjImg="https://wallcal.app/my-assets/app-icon.png"
       pjLink="https://wallcal.app/"
       bgImg="wallcal-screenshot.webp"
     />
     <ProjectCard
       pjName="Yappiely"
-      pjDesc="A lightweight comment platform to engage your readers and grow community"
+      pjDesc="Comments for any website, added with one script tag. Live on tsukie and WallCal."
       pjImg="yappiely-icon.png"
       pjLink="https://yappiely.com"
       bgImg="yappiely-screenshot.png"
     />
     <ProjectCard
       pjName="Endless Defense"
-      pjDesc="A web-based tower defense game perfect for killing time"
+      pjDesc="Web-based tower defense game."
       pjImg="endless-defense-icon.png"
       pjLink="/projects/endless-defense"
       bgImg="endless-defense-bg.jpg"
-    />
-    <ProjectCard
-      pjName="Coming soon..."
-      pjDesc="Our next project is being brewed ;)"
     />
   </div>
 </section>
