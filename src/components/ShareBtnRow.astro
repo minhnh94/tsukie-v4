@@ -1,5 +1,5 @@
 ---
-const currentPageURL = 'https://tsukie.com' + Astro.url.pathname;
+const currentPageURL = 'https://tsukie.com' + Astro.url.pathname.replace(/\.html$/, '');
 ---
 <ul class="inline-flex">
   <li>

@@ -23,6 +23,9 @@ export default defineConfig({
   site: 'https://tsukie.com',
   output: 'static',
   trailingSlash: 'never',
+  // Emit /blog.html rather than /blog/index.html: Cloudflare Pages redirects
+  // directory-style pages to a trailing slash, which contradicts trailingSlash above.
+  build: { format: 'file' },
   markdown: {
     rehypePlugins: [rehypeExternalLinks, rehypeLazyImages],
   },
