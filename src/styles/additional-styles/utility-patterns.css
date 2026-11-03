@@ -29,18 +29,18 @@
     }
 }
 
-/* Buttons - zerobyte style: uppercase, small, bordered, rounded-sm */
+/* Buttons */
 .btn,
 .btn-sm {
-    @apply font-sans uppercase rounded-sm text-xs font-semibold tracking-wide inline-flex items-center justify-center gap-2 whitespace-nowrap border border-border transition-all duration-150 ease-in-out active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+    @apply font-sans rounded-lg text-sm font-semibold inline-flex items-center justify-center gap-2 whitespace-nowrap border border-border transition-all duration-150 ease-in-out active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
 }
 
 .btn {
-    @apply h-9 px-5;
+    @apply h-10 px-5;
 }
 
 .btn-sm {
-    @apply h-9 px-5;
+    @apply h-10 px-5;
 }
 
 .form-input,
@@ -56,7 +56,7 @@
 .form-textarea,
 .form-multiselect,
 .form-select {
-    @apply w-full h-9 rounded-md px-3 py-1 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/50;
+    @apply w-full h-10 rounded-lg px-3 py-1 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/50;
 }
 
 .form-select {

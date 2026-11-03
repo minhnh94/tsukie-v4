@@ -6,30 +6,30 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Google Sans Code"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        inter: ['"Google Sans Code"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        aspekta: ['"Google Sans Code"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        inter: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        aspekta: ['Aspekta', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         'pt-mono': ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
       },
       colors: {
-        background: '#131313',
-        foreground: '#fafafa',
-        card: '#131313',
-        'card-header': '#1b1b1b',
-        primary: '#e5e5e5',
-        'primary-foreground': '#171717',
-        secondary: '#0a0a0a',
-        muted: '#262626',
-        'muted-foreground': '#a1a1a1',
-        accent: '#262626',
-        'accent-foreground': '#fafafa',
+        background: '#0e1018',
+        foreground: '#f2f0f5',
+        card: '#171925',
+        'card-header': '#1e2130',
+        primary: '#f4d35e',
+        'primary-foreground': '#1c1705',
+        secondary: '#090a10',
+        muted: '#242736',
+        'muted-foreground': '#aeadbd',
+        accent: '#242736',
+        'accent-foreground': '#f2f0f5',
         destructive: '#ff543a',
         'destructive-foreground': '#fff',
         success: '#4ade80',
-        border: 'rgba(255, 255, 255, 0.1)',
-        input: 'rgba(255, 255, 255, 0.15)',
-        ring: '#737373',
-        'strong-accent': '#22c55e',
+        border: 'rgba(226, 222, 245, 0.12)',
+        input: 'rgba(226, 222, 245, 0.2)',
+        ring: '#f4d35e',
+        'strong-accent': '#f4d35e',
       },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1.5' }],
@@ -56,7 +56,7 @@ module.exports = {
         DEFAULT: {
           css: {
             color: theme('colors.muted-foreground'),
-            lineHeight: '1.5',
+            lineHeight: '1.7',
             maxWidth: 'none',
             // Headings
             h1: {
@@ -121,7 +121,7 @@ module.exports = {
             figcaption: { fontSize: theme('fontSize.sm[0]'), textAlign: 'center', color: theme('colors.muted-foreground'), marginTop: theme('spacing.3'), fontStyle: 'italic' },
             // Code
             pre: { overflowX: 'auto', fontSize: theme('fontSize.sm[0]'), color: theme('colors.muted-foreground'), backgroundColor: theme('colors.secondary'), padding: theme('spacing.4'), borderRadius: theme('borderRadius.md'), lineHeight: theme('lineHeight.tight'), marginTop: '0', marginBottom: '0' },
-            code: { fontFamily: 'inherit', fontWeight: 'inherit', fontSize: 'inherit', lineHeight: 'inherit' },
+            code: { fontFamily: theme('fontFamily.pt-mono').join(', '), fontWeight: 'inherit', fontSize: '0.9em', lineHeight: 'inherit' },
             'pre code': { fontFamily: theme('fontFamily.pt-mono').join(', ') },
             'code::before': { content: 'none' },
             'code::after': { content: 'none' },

@@ -10,6 +10,7 @@
 @import "additional-styles/range-slider.css";
 @import "additional-styles/toggle-switch.css";
 @import "additional-styles/theme.css";
+@import "additional-styles/custom-fonts.css";
 
 /* Additional Tailwind directives: https://tailwindcss.com/docs/functions-and-directives/#responsive */
 @layer base {
@@ -21,6 +22,10 @@
 	body {
 		scrollbar-width: thin;
 	}
+
+	::selection {
+		background: rgba(244, 211, 94, 0.3);
+	}
 }
 
 @layer utilities {
@@ -29,82 +34,145 @@
 	}
 }
 
-/* Zerobyte dither background treatment (copied wholesale from zerobyte) */
-.dither-lg {
-	--dither-gray: 1;
-	--dither-contrast: 120;
-	--dither-bright: 1;
-	--dither-blur: 0px;
-	--dither-cell: 20px;
-	--dither-opacity: 1;
-	--dither-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAu0lEQVQ4T6WSMQqFMBBEE2wDXiVgG8gtglilCuIpcoogVqlEPIVgK3gVIa2Qzw9YbIpttlqGgbcMM5wxlr33LMbI/nccx3I/PQwD0LXPj+OgAaSUBWCtLZ+2bSv308uyAF37/HkeGkAIASL0fQ8yT9MEdO3z67poAKUUiDDPM8i87zvQtc/f96UBmqZBazTG4Ds4z5MG6LoOrTGEgO8gpUQDtG2L1uicw3);
-	isolation: isolate;
-	z-index: 0;
-	filter: grayscale(var(--dither-gray)) brightness(var(--dither-bright)) blur(var(--dither-blur)) contrast(var(--dither-contrast));
-	background-color: #000;
-	overflow: hidden;
-}
-
-.dither-lg:after {
-	content: "";
-	pointer-events: none;
-	z-index: 1;
-	background-image: var(--dither-image);
-	background-repeat: repeat;
-	background-size: var(--dither-cell) var(--dither-cell);
-	image-rendering: pixelated;
-	opacity: var(--dither-opacity);
-	mix-blend-mode: screen;
-	background-position: 0 0;
-	position: absolute;
-	inset: 0;
-}
-
-/* Zerobyte grid background for page body */
-body::before {
+/* Night sky behind every page: moon halo above, the logo's teal horizon below, two star tiles */
+body::before,
+body::after {
 	content: "";
 	position: fixed;
 	inset: 0;
 	pointer-events: none;
 	z-index: 0;
-	background-size: 40px 40px;
-	background-image: linear-gradient(to right, #262626 1px, transparent 1px),
-		linear-gradient(to bottom, #262626 1px, transparent 1px);
-	-webkit-mask-image: radial-gradient(ellipse at top, black 70%, transparent 100%);
-	mask-image: radial-gradient(ellipse at top, black 70%, transparent 100%);
 }
 
-/* Zerobyte card style */
-.zb-card {
-	position: relative;
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
-}
-
-.zb-card::before {
-	content: "";
-	position: absolute;
-	inset: -2px;
-	pointer-events: none;
-	z-index: 50;
+body::before {
 	background-image:
-		linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
-		linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
-		linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
-		linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
-		linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
-		linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
-		linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
-		linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35));
-	background-size:
-		16px 2px, 2px 16px,
-		16px 2px, 2px 16px,
-		16px 2px, 2px 16px,
-		16px 2px, 2px 16px;
-	background-position:
-		top left, top left,
-		top right, top right,
-		bottom left, bottom left,
-		bottom right, bottom right;
-	background-repeat: no-repeat;
+		url(/images/stars-far.svg),
+		radial-gradient(70vmax 46vmax at 82% -12%, rgba(205, 198, 228, 0.13), transparent 68%),
+		radial-gradient(90vmax 42vmax at 28% 112%, rgba(53, 89, 109, 0.3), transparent 70%);
+	background-size: 617px 617px, auto, auto;
+}
+
+body::after {
+	background-image: url(/images/stars-near.svg);
+	background-size: 941px 941px;
+	animation: stars-twinkle 7s ease-in-out infinite alternate;
+}
+
+@keyframes stars-twinkle {
+	from { opacity: 0.8; }
+	to { opacity: 0.25; }
+}
+
+/* Long-form pages keep the sky calm so nothing competes with the text */
+body:has(.prose)::before {
+	background-image:
+		radial-gradient(70vmax 46vmax at 82% -12%, rgba(205, 198, 228, 0.13), transparent 68%),
+		radial-gradient(90vmax 42vmax at 28% 112%, rgba(53, 89, 109, 0.3), transparent 70%);
+	background-size: auto;
+}
+
+body:has(.prose)::after {
+	display: none;
+}
+
+/* Cards */
+.night-card {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid theme('colors.border');
+	border-radius: 14px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 14px 34px rgba(3, 4, 12, 0.34);
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+a.night-card:hover {
+	border-color: rgba(244, 211, 94, 0.5);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 14px 40px rgba(244, 211, 94, 0.1);
+}
+
+/* Lighthouse art with a rotating lantern beam. Lantern sits at 36.9% / 28.8% of the artwork. */
+.lighthouse-scene {
+	position: absolute;
+	top: -18px;
+	left: 50%;
+	width: 300px;
+	aspect-ratio: 1;
+	transform: translateX(-50%);
+	pointer-events: none;
+}
+
+.lighthouse-scene img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	-webkit-mask-image: radial-gradient(closest-side, #000 58%, transparent 100%);
+	mask-image: radial-gradient(closest-side, #000 58%, transparent 100%);
+}
+
+.lighthouse-beam {
+	position: absolute;
+	top: 28.8%;
+	left: 36.9%;
+	width: 1500px;
+	height: 1500px;
+	margin: -750px 0 0 -750px;
+	border-radius: 50%;
+	background: conic-gradient(
+		rgba(255, 240, 175, 0.26) 0deg,
+		rgba(255, 240, 175, 0.05) 11deg,
+		transparent 18deg,
+		transparent 162deg,
+		rgba(255, 240, 175, 0.05) 169deg,
+		rgba(255, 240, 175, 0.26) 180deg,
+		rgba(255, 240, 175, 0.05) 191deg,
+		transparent 198deg,
+		transparent 342deg,
+		rgba(255, 240, 175, 0.05) 349deg,
+		rgba(255, 240, 175, 0.26) 360deg
+	);
+	-webkit-mask-image: radial-gradient(circle, #000 0, rgba(0, 0, 0, 0.5) 28%, transparent 66%);
+	mask-image: radial-gradient(circle, #000 0, rgba(0, 0, 0, 0.5) 28%, transparent 66%);
+	transform: rotate(205deg);
+	animation: beam-sweep 22s linear infinite;
+}
+
+.lighthouse-lantern {
+	position: absolute;
+	top: 28.8%;
+	left: 36.9%;
+	width: 26%;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	background: radial-gradient(circle, rgba(255, 244, 180, 0.6), rgba(255, 244, 180, 0.14) 38%, transparent 70%);
+	animation: lantern-glow 5s ease-in-out infinite alternate;
+}
+
+@keyframes beam-sweep {
+	from { transform: rotate(205deg); }
+	to { transform: rotate(565deg); }
+}
+
+@keyframes lantern-glow {
+	from { opacity: 0.65; }
+	to { opacity: 1; }
+}
+
+@screen md {
+	.lighthouse-scene {
+		top: 50%;
+		left: auto;
+		right: 0;
+		width: 50%;
+		max-width: 500px;
+		transform: translateY(-50%);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body::after,
+	.lighthouse-beam,
+	.lighthouse-lantern {
+		animation: none;
+	}
 }

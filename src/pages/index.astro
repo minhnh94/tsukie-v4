@@ -4,6 +4,7 @@ import Screen from '@/components/Screen.astro';
 import SideNavigation from '@/components/SideNavigation.astro';
 import MainContent from '@/components/MainContent.astro';
 import Highlight from '@/components/Highlight.astro';
+import LighthouseScene from '@/components/LighthouseScene.astro';
 import Projects from '@/components/Projects.astro';
 
 const NAME = 'Minh Hoang Nguyen';
@@ -69,8 +70,9 @@ const personSchema = {
     <SideNavigation />
     <MainContent>
       <div class="grow space-y-12 pt-4 pb-16 md:pb-20">
-        <section class="zb-card bg-card">
-          <div class="relative z-10 max-w-[700px] px-4 pt-8 pb-10">
+        <section class="night-card bg-card">
+          <LighthouseScene />
+          <div class="relative z-10 md:max-w-[56%] px-5 pt-[250px] md:pt-20 pb-10 md:pb-20">
             <h1 class="h1 font-aspekta mb-5"><Highlight>{NAME}</Highlight></h1>
             <p class="text-lg text-muted-foreground mb-5">
               Software engineer and indie maker in Tokyo. Building software professionally since
@@ -97,7 +99,7 @@ const personSchema = {
           <h2 class="font-aspekta text-xl font-[650] mb-4">What I do</h2>
           <div class="grid sm:grid-cols-2 gap-4">
             {expertise.map(({ title, body }) => (
-              <div class="zb-card bg-card p-4">
+              <div class="night-card bg-card p-4">
                 <h3 class="font-aspekta font-[650] mb-1">{title}</h3>
                 <p class="text-sm text-muted-foreground">{body}</p>
               </div>
@@ -107,14 +109,14 @@ const personSchema = {
 
         <section>
           <h2 class="font-aspekta text-xl font-[650] mb-4">Selected work</h2>
-          <ul class="list-disc pl-5 space-y-2 text-muted-foreground">
+          <ul class="night-card bg-card list-disc pl-9 pr-5 py-5 space-y-2 text-muted-foreground">
             {selectedWork.map((item) => <li>{item}</li>)}
           </ul>
         </section>
 
         <Projects />
 
-        <section class="zb-card bg-card p-4">
+        <section class="night-card bg-card p-4">
           <h2 class="font-aspekta text-xl font-[650] mb-2">Got something in mind?</h2>
           <p class="text-muted-foreground">
             Let's talk: <a class="text-strong-accent hover:underline" href={`mailto:${EMAIL}`}>{EMAIL}</a>

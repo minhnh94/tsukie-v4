@@ -1,22 +1,12 @@
 ---
 import Highlight from "@/components/Highlight.astro";
+import LighthouseScene from "@/components/LighthouseScene.astro";
 ---
 
-<section class="relative mt-4 mb-8 zb-card bg-card">
-  <div
-    class="absolute inset-0 bg-cover bg-center opacity-10 pointer-events-none"
-    style="background-image: url(/images/about.jpg)"
-    aria-hidden="true"
-  ></div>
-  <div class="relative z-10 max-w-[700px]">
-    <div class="px-4 pt-8 pb-10">
-      <img
-        class="rounded-full mb-5"
-        src="/images/logo.png"
-        width="56"
-        height="56"
-        alt="Me"
-      />
+<section class="relative mt-4 mb-8 night-card bg-card">
+  <LighthouseScene />
+  <div class="relative z-10 md:max-w-[56%]">
+    <div class="px-5 pt-[250px] md:pt-10 pb-10">
       <h1 class="h1 font-aspekta mb-5">
         <Highlight>Tech</Highlight> Whiz, <Highlight>Soul</Highlight> Searcher, <Highlight
           >Dream</Highlight
