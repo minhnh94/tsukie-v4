@@ -1,7 +1,10 @@
 ---
 import WidgetPosts from '@/components/WidgetPosts.astro';
+
+// Top offset lines the first widget up with the page's main content.
+const { class: topOffset = 'md:pt-[94px]' } = Astro.props;
 ---
-<aside class="md:w-[260px] lg:w-[300px] shrink-0 self-stretch md:pt-[94px]">
+<aside class:list={['md:w-[260px] lg:w-[300px] shrink-0 self-stretch', topOffset]}>
   <div class="h-full flex flex-col space-y-6">
     <slot />
     <div class="space-y-6 sticky top-6">
