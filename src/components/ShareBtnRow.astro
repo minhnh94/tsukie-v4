@@ -5,13 +5,14 @@ const currentPageURL = 'https://tsukie.com' + Astro.url.pathname.replace(/\.html
   <li>
     <a
       class="flex justify-center items-center text-strong-accent hover:text-strong-accent/80 transition duration-150 ease-in-out"
-      href={`https://twitter.com/intent/tweet?url=${currentPageURL}`}
-      aria-label="Twitter"
+      href={`https://x.com/intent/post?url=${currentPageURL}`}
+      aria-label="X"
+      data-share-platform="twitter"
       target="_blank"
       rel="nofollow noopener noreferrer"
     >
-      <svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <path d="M24 11.5c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4 0 1.6 1.1 2.9 2.6 3.2-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H8c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4c.7-.5 1.3-1.1 1.7-1.8z" />
+      <svg class="w-8 h-8 fill-current" viewBox="-12 -12 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
       </svg>
     </a>
   </li>
@@ -20,6 +21,7 @@ const currentPageURL = 'https://tsukie.com' + Astro.url.pathname.replace(/\.html
       class="flex justify-center items-center text-strong-accent hover:text-strong-accent/80 transition duration-150 ease-in-out"
       href={`https://www.facebook.com/sharer/sharer.php?u=${currentPageURL}`}
       aria-label="Facebook"
+      data-share-platform="facebook"
       target="_blank"
       rel="nofollow noopener noreferrer"
     >
@@ -31,10 +33,10 @@ const currentPageURL = 'https://tsukie.com' + Astro.url.pathname.replace(/\.html
 </ul>
 
 <script is:inline>
-  document.querySelectorAll('[aria-label="Twitter"], [aria-label="Facebook"]').forEach(function(el) {
+  document.querySelectorAll('[data-share-platform]').forEach(function(el) {
     el.addEventListener('click', function() {
       window.posthog?.capture('article_shared', {
-        platform: el.getAttribute('aria-label').toLowerCase(),
+        platform: el.dataset.sharePlatform,
         url: window.location.href
       });
     });
