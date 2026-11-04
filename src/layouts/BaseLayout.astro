@@ -1,6 +1,7 @@
 ---
 import '@/styles/globals.css';
 import PostHog from '@/components/posthog.astro';
+import NightSky from '@/components/NightSky.astro';
 
 const {
   title = 'tsukie - tech, soul, and dream',
@@ -58,6 +59,7 @@ const websiteSchema = {
     <PostHog />
   </head>
   <body class="font-sans antialiased bg-background text-foreground tracking-tight">
+    <NightSky />
     <div class="relative z-10 min-h-[100dvh]">
       <slot />
     </div>

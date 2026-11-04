@@ -34,45 +34,141 @@
 	}
 }
 
-/* Night sky behind every page: moon halo above, the logo's teal horizon below, two star tiles */
-body::before,
-body::after {
+/* Night sky behind every page: far stars and the logo's teal horizon, then NightSky.astro on top */
+body::before {
 	content: "";
 	position: fixed;
 	inset: 0;
 	pointer-events: none;
 	z-index: 0;
-}
-
-body::before {
 	background-image:
 		url(/images/stars-far.svg),
-		radial-gradient(70vmax 46vmax at 82% -12%, rgba(205, 198, 228, 0.13), transparent 68%),
 		radial-gradient(90vmax 42vmax at 28% 112%, rgba(53, 89, 109, 0.3), transparent 70%);
-	background-size: 617px 617px, auto, auto;
+	background-size: 617px 617px, auto;
 }
 
-body::after {
+.night-sky {
+	position: fixed;
+	inset: 0;
+	overflow: hidden;
+	pointer-events: none;
+	z-index: 0;
+}
+
+/* Warm moonlight pours down from above the viewport */
+.moonlight {
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(40vmax 26vmax at 62% -8%, rgba(255, 238, 178, 0.26), transparent 70%),
+		radial-gradient(95vmax 75vmax at 62% -14%, rgba(240, 220, 165, 0.14), transparent 72%);
+	animation: moonlight-breathe 16s ease-in-out infinite alternate;
+}
+
+.moon-rays {
+	position: absolute;
+	top: -22%;
+	left: 62%;
+	width: 240vmax;
+	height: 240vmax;
+	margin: -120vmax 0 0 -120vmax;
+	background: conic-gradient(
+		from 148deg,
+		transparent 0deg,
+		rgba(255, 234, 165, 0.15) 7deg,
+		transparent 14deg,
+		transparent 19deg,
+		rgba(255, 234, 165, 0.1) 24deg,
+		transparent 31deg,
+		rgba(255, 234, 165, 0.2) 39deg,
+		transparent 49deg,
+		transparent 54deg,
+		rgba(255, 234, 165, 0.12) 60deg,
+		transparent 68deg,
+		transparent 360deg
+	);
+	-webkit-mask-image: radial-gradient(circle, #000 0, rgba(0, 0, 0, 0.75) 30%, transparent 64%);
+	mask-image: radial-gradient(circle, #000 0, rgba(0, 0, 0, 0.75) 30%, transparent 64%);
+	animation: moon-rays-sway 34s ease-in-out infinite alternate;
+}
+
+/* The same star tile at three scales, each pulsing on its own clock, so stars shimmer independently */
+.star-layer {
+	position: absolute;
+	inset: 0;
 	background-image: url(/images/stars-near.svg);
+	animation: star-shimmer 5s ease-in-out infinite;
+}
+
+.star-layer-a {
 	background-size: 941px 941px;
-	animation: stars-twinkle 7s ease-in-out infinite alternate;
+	animation-duration: 3.7s;
 }
 
-@keyframes stars-twinkle {
+.star-layer-b {
+	background-size: 1117px 1117px;
+	background-position: 311px 173px;
+	animation-duration: 5.3s;
+	animation-delay: -2.1s;
+}
+
+.star-layer-c {
+	background-size: 787px 787px;
+	background-position: 127px 419px;
+	animation-duration: 7.1s;
+	animation-delay: -4.4s;
+}
+
+/* Four-point sparkles that flare briefly, then stay dark for most of their cycle */
+.star-glint {
+	position: absolute;
+	background: url(/images/star-glint.svg) center / contain no-repeat;
+	opacity: 0;
+	animation: star-glint 10s ease-in-out infinite;
+}
+
+@keyframes moonlight-breathe {
 	from { opacity: 0.8; }
-	to { opacity: 0.25; }
+	to { opacity: 1; }
 }
 
-/* Long-form pages keep the sky calm so nothing competes with the text */
+@keyframes moon-rays-sway {
+	from { transform: rotate(-3deg); }
+	to { transform: rotate(4deg); }
+}
+
+@keyframes star-shimmer {
+	0%, 100% { opacity: 0.2; }
+	30% { opacity: 1; }
+	48% { opacity: 0.45; }
+	68% { opacity: 0.95; }
+}
+
+@keyframes star-glint {
+	0%, 76%, 100% { opacity: 0; transform: scale(0.2) rotate(-20deg); }
+	86% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Long-form pages keep the moonlight but drop everything that moves behind the text */
 body:has(.prose)::before {
-	background-image:
-		radial-gradient(70vmax 46vmax at 82% -12%, rgba(205, 198, 228, 0.13), transparent 68%),
-		radial-gradient(90vmax 42vmax at 28% 112%, rgba(53, 89, 109, 0.3), transparent 70%);
+	background-image: radial-gradient(90vmax 42vmax at 28% 112%, rgba(53, 89, 109, 0.3), transparent 70%);
 	background-size: auto;
 }
 
-body:has(.prose)::after {
+body:has(.prose) .moon-rays,
+body:has(.prose) .star-layer,
+body:has(.prose) .star-glint {
 	display: none;
+}
+
+body:has(.prose) .moonlight {
+	animation: none;
+}
+
+@media (max-width: 767px) {
+	.star-glint:nth-of-type(n + 19) {
+		display: none;
+	}
 }
 
 /* Cards */
@@ -170,7 +266,10 @@ a.night-card:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	body::after,
+	.moonlight,
+	.moon-rays,
+	.star-layer,
+	.star-glint,
 	.lighthouse-beam,
 	.lighthouse-lantern {
 		animation: none;
