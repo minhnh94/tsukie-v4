@@ -1,5 +1,5 @@
 ---
-const pathname = Astro.url.pathname.replace(/\.html$/, '');
+const pathname = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
 
 const isActive = (href: string) => {
   if (href === '/') return pathname === '/';
