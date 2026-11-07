@@ -18,6 +18,25 @@ interface Props {
 
 const TAG_LATEST = "latest";
 
+const navBtn =
+  "flex items-center justify-center w-10 h-10 rounded-full bg-card border border-border text-strong-accent hover:border-strong-accent/60 hover:bg-muted transition-colors duration-150";
+
+/** Pages to show: first, last, current ±1, with "…" for gaps. */
+function pageRange(current: number, total: number): (number | "…")[] {
+  const pages = new Set([1, total, current - 1, current, current + 1]);
+  const sorted = [...pages].filter((p) => p >= 1 && p <= total).sort((a, b) => a - b);
+  const out: (number | "…")[] = [];
+  sorted.forEach((p, i) => {
+    if (i > 0) {
+      const gap = p - sorted[i - 1];
+      if (gap === 2) out.push(p - 1);
+      else if (gap > 2) out.push("…");
+    }
+    out.push(p);
+  });
+  return out;
+}
+
 function ArticleCard({
   post,
   onTagClick,
@@ -140,27 +159,60 @@ export default function ArticlesIsland({
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-4 pt-6">
-          {currentPage > 1 && (
-            <a
-              className="text-strong-accent hover:text-strong-accent/80 cursor-pointer"
-              onClick={() => fetchPage(activeTag, currentPage - 1, true)}
-            >
-              &lt; back
-            </a>
-          )}
-          <span className="text-muted-foreground text-sm">
-            Page {currentPage} of {totalPages}
-          </span>
-          {currentPage < totalPages && (
-            <a
-              className="text-strong-accent hover:text-strong-accent/80 cursor-pointer"
-              onClick={() => fetchPage(activeTag, currentPage + 1, true)}
-            >
-              next &gt;
-            </a>
-          )}
-        </div>
+        <nav
+          aria-label="Pagination"
+          className="flex justify-center items-center gap-2 pt-8"
+        >
+          <button
+            type="button"
+            aria-label="Previous page"
+            disabled={currentPage <= 1}
+            onClick={() => fetchPage(activeTag, currentPage - 1, true)}
+            className={`${navBtn} disabled:opacity-30 disabled:pointer-events-none`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5" aria-hidden="true">
+              <path fillRule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
+            </svg>
+          </button>
+
+          <ul className="flex items-center gap-1 px-1.5 py-1 rounded-full bg-card border border-border">
+            {pageRange(currentPage, totalPages).map((p, i) =>
+              p === "…" ? (
+                <li key={`gap-${i}`} className="w-6 text-center text-xs text-muted-foreground select-none">
+                  …
+                </li>
+              ) : (
+                <li key={p}>
+                  <button
+                    type="button"
+                    aria-label={`Page ${p}`}
+                    aria-current={p === currentPage ? "page" : undefined}
+                    onClick={() => p !== currentPage && fetchPage(activeTag, p, true)}
+                    className={`w-8 h-8 rounded-full text-sm tabular-nums transition-colors duration-150 ${
+                      p === currentPage
+                        ? "bg-strong-accent text-primary-foreground font-semibold cursor-default"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    {p}
+                  </button>
+                </li>
+              ),
+            )}
+          </ul>
+
+          <button
+            type="button"
+            aria-label="Next page"
+            disabled={currentPage >= totalPages}
+            onClick={() => fetchPage(activeTag, currentPage + 1, true)}
+            className={`${navBtn} disabled:opacity-30 disabled:pointer-events-none`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5" aria-hidden="true">
+              <path fillRule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+            </svg>
+          </button>
+        </nav>
       )}
     </div>
   );
