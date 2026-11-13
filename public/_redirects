@@ -1,1 +1,9 @@
 /en/technologies/i-deleted-my-laptop-from-my-dev-workflow-my-iphone-does-the-job-now /en/technologies/i-built-a-laptop-free-dev-setup-with-iphone 301
+/apps/wallcal/contact-us https://wallcal.app/support/ 301
+/apps/wallcal/contact-us.html https://wallcal.app/support/ 301
+/apps/wallcal/acknowledgements https://wallcal.app/acknowledgements/ 301
+/apps/wallcal/acknowledgements.html https://wallcal.app/acknowledgements/ 301
+/apps/wallcal/expert-calendar-addon https://wallcal.app/expert-calendar-addon/ 301
+/apps/wallcal/expert-calendar-addon.html https://wallcal.app/expert-calendar-addon/ 301
+/apps/wallcal https://wallcal.app/ 301
+/apps/wallcal/* https://wallcal.app/ 301
